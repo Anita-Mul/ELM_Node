@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import config from 'config-lite';
 import chalk from 'chalk';
 mongoose.connect(config.url, {useMongoClient:true});
+// https://stackoverflow.com/questions/51862570/mongoose-why-we-make-mongoose-promise-global-promise-when-setting-a-mongoo
 mongoose.Promise = global.Promise;
 
 // 访问默认连接 http://mongoosejs.net/docs/connections.html
