@@ -35,15 +35,15 @@ app.all('*', (req, res, next) => {
 const MongoStore = connectMongo(session);
 app.use(cookieParser());
 app.use(session({
-		name: config.session.name,         // 'SID'
-		secret: config.session.secret,     // 'SID'
-		resave: true,
-		saveUninitialized: false,
-		cookie: config.session.cookie,     
-		store: new MongoStore({
-			url: config.url				   // 'mongodb://localhost:27017/elm'
-										   // connect-mongo会在该database下创建一个sessions的数据表
-		})
+	name: config.session.name,         // 'SID'
+	secret: config.session.secret,     // 'SID'
+	resave: true,
+	saveUninitialized: false,
+	cookie: config.session.cookie,     
+	store: new MongoStore({
+		url: config.url				   // 'mongodb://localhost:27017/elm'
+										// connect-mongo会在该database下创建一个sessions的数据表
+	})
 }))
 
 // app.use(expressWinston.logger({
