@@ -42,9 +42,10 @@ app.use(session({
 	cookie: config.session.cookie,     
 	store: new MongoStore({
 		url: config.url				   // 'mongodb://localhost:27017/elm'
-										// connect-mongo会在该database下创建一个sessions的数据表
+									   // connect-mongo会在该database下创建一个sessions的数据表
 	})
 }))
+
 
 // app.use(expressWinston.logger({
 //     transports: [
@@ -72,8 +73,16 @@ router(app);
 //     ]
 // }));
 
+
 app.use(history());
 app.use(express.static('./public'));
+// app.listen(process.env.PORT || config.port, () => {
+// 	console.log(
+// 		chalk.green(`成功监听端口：${config.port}`)
+// 	)
+// });
+
+
 app.listen(config.port, () => {
 	console.log(
 		chalk.green(`成功监听端口：${config.port}`)

@@ -15,9 +15,14 @@ import shopping from './shopping'
 import promotion from './promotion'
 
 export default app => {
-	// app.get('/', (req, res, next) => {
-	// 	res.redirect('/');
-	// });
+	app.get('/', (req, res, next) => {
+		res.send([
+			{
+			  title: 'serverless framework',
+			  link: 'https://serverless.com'
+			}
+		])
+	});
 	app.use('/v1', v1);
 	app.use('/v2', v2);
 	app.use('/v3', v3);
