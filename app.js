@@ -1,13 +1,11 @@
 import express from 'express';
-import db from './mongodb/db.js';
 import config from 'config-lite';
 import router from './routes/index.js';
+import db from './mongodb/db.js';
 import cookieParser from 'cookie-parser'
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
-// 日志库
-import winston from 'winston';
-import expressWinston from 'express-winston';
+
 import history from 'connect-history-api-fallback';
 import chalk from 'chalk';
 // import Statistic from './middlewares/statistic'
@@ -32,6 +30,7 @@ app.all('*', (req, res, next) => {
 });
 
 // app.use(Statistic.apiRecord)
+
 const MongoStore = connectMongo(session);
 app.use(cookieParser());
 app.use(session({
@@ -47,43 +46,13 @@ app.use(session({
 }))
 
 
-// app.use(expressWinston.logger({
-//     transports: [
-//         new (winston.transports.Console)({
-//           json: true,
-//           colorize: true
-//         }),
-//         new winston.transports.File({
-//           filename: 'logs/success.log'
-//         })
-//     ]
-// }));
-
 router(app);
-
-// app.use(expressWinston.errorLogger({
-//     transports: [
-//         new winston.transports.Console({
-//           json: true,
-//           colorize: true
-//         }),
-//         new winston.transports.File({
-//           filename: 'logs/error.log'
-//         })
-//     ]
-// }));
-
 
 app.use(history());
 app.use(express.static('./public'));
-// app.listen(process.env.PORT || config.port, () => {
-// 	console.log(
-// 		chalk.green(`成功监听端口：${config.port}`)
-// 	)
-// });
 
 
-app.listen(config.port, () => {
+app.listen(process.env.PORT || config.port, () => {
 	console.log(
 		chalk.green(`成功监听端口：${config.port}`)
 	)

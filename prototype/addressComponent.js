@@ -3,38 +3,46 @@
 import BaseComponent from './baseComponent'
 
 /*
-腾讯地图和百度地图API统一调配组件
+腾讯地图和百度地图API统一调配组件 
  */
 class AddressComponent extends BaseComponent {
 	constructor(){
 		super();
+		// 腾讯 key
 		this.tencentkey = 'RLHBZ-WMPRP-Q3JDS-V2IQA-JNRFH-EJBHL';
 		this.tencentkey2 = 'RRXBZ-WC6KF-ZQSJT-N2QU7-T5QIT-6KF5X';
 		this.tencentkey3 = 'OHTBZ-7IFRG-JG2QF-IHFUK-XTTK6-VXFBN';
 		this.tencentkey4 = 'Z2BBZ-QBSKJ-DFUFG-FDGT3-4JRYV-JKF5O';
-		this.baidukey = 'fjke3YUipM9N64GdOIh1DNeK2APO2WcT';
-		// this.baidukey2 = 'fjke3YUipM9N64GdOIh1DNeK2APO2WcT';
+		
+		// 百度 ak
+		// 备用 YtpMLPoTaVC4BFvndbMufujD3SGI1BkV
+		this.baidukey = 'fjke3YUipM9N64GdOIh1DNeK2APO2WcT'; 
 	}
+
 	//获取定位地址
 	async guessPosition(req){
 		return new Promise(async (resolve, reject) => {
 			let ip;
 			const defaultIp = '180.158.102.141';
+
 	 		if (process.env.NODE_ENV == 'development') {
 	 			ip = defaultIp;
 	 		} else {
 	 			try {
+					 // IP 定位
 					ip = req.headers['x-forwarded-for'] || 
-			 		req.connection.remoteAddress || 
-			 		req.socket.remoteAddress ||
-			 		req.connection.socket.remoteAddress;
+						 req.connection.remoteAddress || 
+						 req.socket.remoteAddress ||
+			 		     req.connection.socket.remoteAddress;
+
 			 		const ipArr = ip.split(':');
-			 		ip = ipArr[ipArr.length -1] || defaultIp;
+			 		ip = ipArr[ipArr.length - 1] || defaultIp;
 				} catch (e) {
 					ip = defaultIp;
 				}
 	 		}
-	 		try{
+
+	 		try {
 		 		let result = await this.fetch('http://apis.map.qq.com/ws/location/v1/ip', {
 		 			ip,
 		 			key: this.tencentkey,
@@ -57,12 +65,14 @@ class AddressComponent extends BaseComponent {
 			 			key: this.tencentkey4,
 			 		})
 		 		}
+
 		 		if (result.status == 0) {
 		 			const cityInfo = {
 		 				lat: result.result.location.lat,
 		 				lng: result.result.location.lng,
 		 				city: result.result.ad_info.city,
 		 			}
+
 		 			cityInfo.city = cityInfo.city.replace(/市$/, '');
 		 			resolve(cityInfo)
 		 		}else{
@@ -74,6 +84,7 @@ class AddressComponent extends BaseComponent {
 	 		}
 		})
 	}
+
 	//搜索地址
 	async searchPlace(keyword, cityName, type = 'search'){
 		try{
@@ -110,20 +121,23 @@ class AddressComponent extends BaseComponent {
 			// 		destinations: to,
 			// 	})
 			// }
-			if(res.status == 0){
+			if(res.status == 0) {
 				const positionArr = [];
 				let timevalue;
+
 				res.result.forEach(item => {
 					timevalue = parseInt(item.duration.value) + 1200;
-					let durationtime = Math.ceil(timevalue%3600/60) + '分钟';
-					if(Math.floor(timevalue/3600)){
-						durationtime = Math.floor(timevalue/3600) + '小时' + durationtime;
+					let durationtime = Math.ceil(timevalue % 3600 / 60) + '分钟';
+					if(Math.floor(timevalue / 3600)) {
+						durationtime = Math.floor(timevalue / 3600) + '小时' + durationtime;
 					}
 					positionArr.push({
 						distance: item.distance.text,
 						order_lead_time: durationtime,
 					})
 				})
+
+				// 单单返回时间值
 				if (type == 'tiemvalue') {
 					return timevalue
 				}else{
@@ -141,7 +155,8 @@ class AddressComponent extends BaseComponent {
 			throw new Error(err);
 		}
 	}
-	//通过ip地址获取精确位置
+
+	// 经纬度获取精确位置
 	async geocoder(req){
 		try{
 			const address = await this.guessPosition(req);
@@ -172,7 +187,8 @@ class AddressComponent extends BaseComponent {
 			throw new Error(err);
 		}
 	}
-	//通过geohash获取精确位置
+
+	// 经纬度获取精确位置
 	async getpois(lat, lng){
 		try{
 			const params = {

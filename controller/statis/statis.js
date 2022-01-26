@@ -10,6 +10,8 @@ class Statis {
 	constructor(){
 
 	}
+
+	// 40
 	async apiCount(req, res, next){
 		const date = req.params.date;
 		if (!date) {
@@ -21,6 +23,7 @@ class Statis {
 			})
 			return
 		}
+
 		try{
 			const count = await StatisModel.find({date}).count()
 			res.send({
@@ -36,6 +39,8 @@ class Statis {
 			})
 		}
 	}
+
+	// 41
 	async apiAllCount(req, res, next){
 		try{
 			const count = await StatisModel.count()
@@ -52,6 +57,7 @@ class Statis {
 			})
 		}
 	}
+
 	async allApiRecord(req, res, next){
 		try{
 			const allRecord = await StatisModel.find({}, '-_id -__v')
@@ -65,6 +71,8 @@ class Statis {
 			})
 		}
 	}
+
+	// 42
 	async userCount(req, res, next){
 		const date = req.params.date;
 		if (!date) {
@@ -76,6 +84,7 @@ class Statis {
 			})
 			return
 		}
+
 		try{
 			const count = await UserInfoModel.find({registe_time: eval('/^' + date + '/gi')}).count()
 			res.send({
@@ -91,6 +100,8 @@ class Statis {
 			})
 		}
 	}
+
+	
 	async adminCount(req, res, next){
 		const date = req.params.date;
 		if (!date) {
@@ -117,6 +128,8 @@ class Statis {
 			})
 		}
 	}
+
+	// 44
 	async orderCount(req, res, next){
 		const date = req.params.date;
 		if (!date) {

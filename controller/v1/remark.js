@@ -3,12 +3,14 @@
 import BaseComponent from '../../prototype/baseComponent'
 import RemarkModel from '../../models/v1/remark'
 
-class Remark extends BaseComponent{
-	constructor(){
+class Remark extends BaseComponent {
+	constructor() {
 		super()
 	}
-	async getRemarks(req, res, next){
+
+	async getRemarks(req, res, next) {
 		const cart_id = req.params.cart_id;
+
 		if (!cart_id || !Number(cart_id)) {
 			res.send({
 				status: 0,
@@ -17,10 +19,11 @@ class Remark extends BaseComponent{
 			})
 			return 
 		}
-		try{
+
+		try {
 			const remarks = await RemarkModel.findOne({}, '-_id');
 			res.send(remarks);
-		}catch(err){
+		} catch(err) {
 			console.log('获取备注数据失败',err);
 			res.send({
 				status: 0,

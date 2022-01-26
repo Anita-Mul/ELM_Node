@@ -15,8 +15,11 @@ class User extends AddressComponent {
 		this.chanegPassword = this.chanegPassword.bind(this);
 		this.updateAvatar = this.updateAvatar.bind(this);
 	}
+
+	// 25
 	async login(req, res, next){
 		const cap = req.cookies.cap;
+
 		if (!cap) {
 			console.log('验证码失效')
 			res.send({
@@ -26,6 +29,7 @@ class User extends AddressComponent {
 			})
 			return
 		}
+
 		const form = new formidable.IncomingForm();
 		form.parse(req, async (err, fields, files) => {
 			const {username, password, captcha_code} = fields;
@@ -46,6 +50,7 @@ class User extends AddressComponent {
 				})
 				return
 			}
+
 			if (cap.toString() !== captcha_code.toString()) {
 				res.send({
 					status: 0,
@@ -54,9 +59,11 @@ class User extends AddressComponent {
 				})
 				return
 			}
+
 			const newpassword = this.encryption(password);
 			try{
 				const user = await UserModel.findOne({username});
+
 				//创建一个新的用户
 				if (!user) {
 					const user_id = await this.getId('user_id');
@@ -64,9 +71,11 @@ class User extends AddressComponent {
 					const registe_time = dtime().format('YYYY-MM-DD HH:mm');
 					const newUser = {username, password: newpassword, user_id};
 					const newUserInfo = {username, user_id, id: user_id, city: cityInfo.city, registe_time, };
+					
 					UserModel.create(newUser);
 					const createUser = new UserInfoModel(newUserInfo);
 					const userinfo = await createUser.save();
+					
 					req.session.user_id = user_id;
 					res.send(userinfo);
 				}else if (user.password.toString() !== newpassword.toString()) {
@@ -92,10 +101,13 @@ class User extends AddressComponent {
 			}
 		})
 	}
+
+	// 24
 	async getInfo(req, res, next){
 		const sid = req.session.user_id;
 		const qid = req.query.user_id;
 		const user_id = sid || qid;
+
 		if (!user_id || !Number(user_id)) {
 			// console.log('获取用户信息的参数user_id无效', user_id)
 			res.send({
@@ -105,6 +117,7 @@ class User extends AddressComponent {
 			})
 			return 
 		}
+
 		try{
 			const userinfo = await UserInfoModel.findOne({user_id}, '-_id');
 			res.send(userinfo) 
@@ -117,6 +130,8 @@ class User extends AddressComponent {
 			})
 		}
 	}
+
+
 	async getInfoById(req, res, next){
 		const user_id = req.params.user_id;
 		if (!user_id || !Number(user_id)) {
@@ -140,6 +155,8 @@ class User extends AddressComponent {
 			})
 		}
 	}
+
+	// 26
 	async signout(req, res, next){
 		delete req.session.user_id;
 		res.send({
@@ -147,6 +164,8 @@ class User extends AddressComponent {
 			message: '退出成功'
 		})
 	}
+
+	// 27
 	async chanegPassword(req, res, next){
 		const cap = req.cookies.cap;
 		if (!cap) {
@@ -158,6 +177,7 @@ class User extends AddressComponent {
 			})
 			return
 		}
+
 		const form = new formidable.IncomingForm();
 		form.parse(req, async (err, fields, files) => {
 			const {username, oldpassWord, newpassword, confirmpassword, captcha_code} = fields;
@@ -184,6 +204,7 @@ class User extends AddressComponent {
 				})
 				return
 			}
+
 			if (cap.toString() !== captcha_code.toString()) {
 				res.send({
 					status: 0,
@@ -192,6 +213,7 @@ class User extends AddressComponent {
 				})
 				return
 			}
+
 			const md5password = this.encryption(oldpassWord);
 			try{
 				const user = await UserModel.findOne({username});
@@ -225,6 +247,7 @@ class User extends AddressComponent {
 			}
 		})
 	}
+
 	encryption(password){
 		const newpassword = this.Md5(this.Md5(password).substr(2, 7) + this.Md5(password));
 		return newpassword
@@ -233,6 +256,8 @@ class User extends AddressComponent {
 		const md5 = crypto.createHash('md5');
 		return md5.update(password).digest('base64');
 	}
+
+	// 57
 	async getUserList(req, res, next){
 		const {limit = 20, offset = 0} = req.query;
 		try{
@@ -247,6 +272,8 @@ class User extends AddressComponent {
 			})
 		}
 	}
+
+	// 43
 	async getUserCount(req, res, next){
 		try{
 			const count = await UserInfoModel.count();
@@ -263,6 +290,8 @@ class User extends AddressComponent {
 			})
 		}
 	}
+
+
 	async updateAvatar(req, res, next){
 		const sid = req.session.user_id;
 		const pid = req.params.user_id;
@@ -293,12 +322,16 @@ class User extends AddressComponent {
 			})
 		}
 	}
+
+
+	// 60
 	async getUserCity(req, res, next){
 		const cityArr = ['北京', '上海', '深圳', '杭州'];
 		const filterArr = [];
 		cityArr.forEach(item => {
 			filterArr.push(UserInfoModel.find({city: item}).count())
 		})
+
 		filterArr.push(UserInfoModel.$where('!"北京上海深圳杭州".includes(this.city)').count())
 		Promise.all(filterArr).then(result => {
 			res.send({

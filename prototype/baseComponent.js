@@ -16,9 +16,12 @@ export default class BaseComponent {
 		this.uploadImg = this.uploadImg.bind(this)
 		this.qiniu = this.qiniu.bind(this)
 	}
+
 	async fetch(url = '', data = {}, type = 'GET', resType = 'JSON'){
 		type = type.toUpperCase();
 		resType = resType.toUpperCase();
+
+		// 将参数放到url之后
 		if (type == 'GET') {
 			let dataStr = ''; //数据拼接字符串
 			Object.keys(data).forEach(key => {
@@ -44,6 +47,7 @@ export default class BaseComponent {
 				value: JSON.stringify(data)
 			})
 		}
+
 		let responseJson;
 		try {
 			const response = await fetch(url, requestConfig);
@@ -56,9 +60,11 @@ export default class BaseComponent {
 			console.log('获取http数据失败', err);
 			throw new Error(err)
 		}
+
 		return responseJson
 	}
-	//获取id列表
+
+	//获取id列表，每一种类型的id从0开始，按序获取
 	async getId(type){
 		if (!this.idList.includes(type)) {
 			console.log('id类型错误');
@@ -95,21 +101,25 @@ export default class BaseComponent {
 		}
 	}
 
-	async getPath(req, res){
+	async getPath(req, res) {
 		return new Promise((resolve, reject) => {
 			const form = formidable.IncomingForm();
 			form.uploadDir = './public/img';
+
 			form.parse(req, async (err, fields, files) => {
 				let img_id;
-				try{
+
+				try {
 					img_id = await this.getId('img_id');
-				}catch(err){
+				} catch (err) {
 					console.log('获取图片id失败');
 					fs.unlinkSync(files.file.path);
 					reject('获取图片id失败');
 				}
-				const hashName = (new Date().getTime() + Math.ceil(Math.random()*10000)).toString(16) + img_id;
+
+				const hashName = (new Date().getTime() + Math.ceil(Math.random() * 10000)).toString(16) + img_id;
 				const extname = path.extname(files.file.name);
+				
 				if (!['.jpg', '.jpeg', '.png'].includes(extname)) {
 					fs.unlinkSync(files.file.path);
 					res.send({
@@ -120,8 +130,10 @@ export default class BaseComponent {
 					reject('上传失败');
 					return 
 				}
+
 				const fullName = hashName + extname;
 				const repath = './public/img/' + fullName;
+
 				try{
 					fs.renameSync(files.file.path, repath);
 					gm(repath)
@@ -151,6 +163,7 @@ export default class BaseComponent {
 		return new Promise((resolve, reject) => {
 			const form = formidable.IncomingForm();
 			form.uploadDir = './public/img';
+
 			form.parse(req, async (err, fields, files) => {
 				let img_id;
 				try{
@@ -160,9 +173,11 @@ export default class BaseComponent {
 					fs.unlinkSync(files.file.path);
 					reject('获取图片id失败')
 				}
+
 				const hashName = (new Date().getTime() + Math.ceil(Math.random()*10000)).toString(16) + img_id;
 				const extname = path.extname(files.file.name);
 				const repath = './public/img/' + hashName + extname;
+
 				try{
 					const key = hashName + extname;
 					await fs.rename(files.file.path, repath);
@@ -179,10 +194,13 @@ export default class BaseComponent {
 
 		})
 	}
+
+	// 上传凭证
 	uptoken(bucket, key){
 		var putPolicy = new qiniu.rs.PutPolicy(bucket+":"+key);
   		return putPolicy.token();
 	}
+
 	uploadFile(uptoken, key, localFile){
 		return new Promise((resolve, reject) => {
 			var extra = new qiniu.io.PutExtra();

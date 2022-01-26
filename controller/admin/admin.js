@@ -14,8 +14,11 @@ class Admin extends AddressComponent {
 		this.encryption = this.encryption.bind(this)
 		this.updateAvatar = this.updateAvatar.bind(this)
 	}
-	async login(req, res, next){
+
+	// 37
+	async login(req, res, next) {
 		const form = new formidable.IncomingForm();
+
 		form.parse(req, async (err, fields, files) => {
 			if (err) {
 				res.send({
@@ -25,7 +28,9 @@ class Admin extends AddressComponent {
 				})
 				return
 			}
+
 			const {user_name, password, status = 1} = fields;
+
 			try{
 				if (!user_name) {
 					throw new Error('用户名参数错误')
@@ -41,13 +46,17 @@ class Admin extends AddressComponent {
 				})
 				return
 			}
+
 			const newpassword = this.encryption(password);
+
 			try{
 				const admin = await AdminModel.findOne({user_name})
+
 				if (!admin) {
 					const adminTip = status == 1 ? '管理员' : '超级管理员'
 					const admin_id = await this.getId('admin_id');
 					const cityInfo = await this.guessPosition(req);
+
 					const newAdmin = {
 						user_name, 
 						password: newpassword, 
@@ -57,13 +66,15 @@ class Admin extends AddressComponent {
 						status,
 						city: cityInfo.city
 					}
+
 					await AdminModel.create(newAdmin)
 					req.session.admin_id = admin_id;
+
 					res.send({
 						status: 1,
 						success: '注册管理员成功',
 					})
-				}else if(newpassword.toString() != admin.password.toString()){
+				} else if (newpassword.toString() != admin.password.toString()) {
 					console.log('管理员登录密码错误');
 					res.send({
 						status: 0,
@@ -87,6 +98,8 @@ class Admin extends AddressComponent {
 			}
 		})
 	}
+
+	// 管理员注册
 	async register(req, res, next){
 		const form = new formidable.IncomingForm();
 		form.parse(req, async (err, fields, files) => {
@@ -98,14 +111,16 @@ class Admin extends AddressComponent {
 				})
 				return
 			}
+
 			const {user_name, password, status = 1} = fields;
-			try{
+
+			try {
 				if (!user_name) {
 					throw new Error('用户名错误')
-				}else if(!password){
+				} else if (!password){
 					throw new Error('密码错误')
 				}
-			}catch(err){
+			} catch (err){
 				console.log(err.message, err);
 				res.send({
 					status: 0,
@@ -114,6 +129,7 @@ class Admin extends AddressComponent {
 				})
 				return
 			}
+
 			try{
 				const admin = await AdminModel.findOne({user_name})
 				if (admin) {
@@ -152,14 +168,18 @@ class Admin extends AddressComponent {
 			}
 		})
 	}
+
 	encryption(password){
 		const newpassword = this.Md5(this.Md5(password).substr(2, 7) + this.Md5(password));
 		return newpassword
 	}
+
 	Md5(password){
 		const md5 = crypto.createHash('md5');
 		return md5.update(password).digest('base64');
 	}
+
+	// 38
 	async singout(req, res, next){
 		try{
 			delete req.session.admin_id;
@@ -175,9 +195,12 @@ class Admin extends AddressComponent {
 			})
 		}
 	}
+
+	// 46
 	async getAllAdmin(req, res, next){
 		const {limit = 20, offset = 0} = req.query;
 		try{
+			// 返回信息中不包括 _id 和 -password
 			const allAdmin = await AdminModel.find({}, '-_id -password').sort({id: -1}).skip(Number(offset)).limit(Number(limit))
 			res.send({
 				status: 1,
@@ -192,6 +215,8 @@ class Admin extends AddressComponent {
 			})
 		}
 	}
+
+	// 43
 	async getAdminCount(req, res, next){
 		try{
 			const count = await AdminModel.count()
@@ -208,8 +233,11 @@ class Admin extends AddressComponent {
 			})
 		}
 	}
+
+	// 39
 	async getAdminInfo(req, res, next){
 		const admin_id = req.session.admin_id;
+
 		if (!admin_id || !Number(admin_id)) {
 			// console.log('获取管理员信息的session失效');
 			res.send({
@@ -219,7 +247,8 @@ class Admin extends AddressComponent {
 			})
 			return 
 		}
-		try{
+
+		try {
 			const info = await AdminModel.findOne({id: admin_id}, '-_id -__v -password');
 			if (!info) {
 				throw new Error('未找到当前管理员')
@@ -229,7 +258,7 @@ class Admin extends AddressComponent {
 					data: info
 				})
 			}
-		}catch(err){
+		} catch(err) {
 			console.log('获取管理员信息失败');
 			res.send({
 				status: 0,
@@ -238,6 +267,7 @@ class Admin extends AddressComponent {
 			})
 		}
 	}
+
 	async updateAvatar(req, res, next){
 		const admin_id = req.params.admin_id;
 		if (!admin_id || !Number(admin_id)) {

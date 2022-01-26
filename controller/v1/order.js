@@ -12,8 +12,11 @@ class Order extends BaseComponent{
 		super()
 		this.postOrder = this.postOrder.bind(this);
 	}
+
+	// 30
 	async postOrder(req, res, next){
 		const form = new formidable.IncomingForm();
+
 		form.parse(req, async (err, fields, files) => {
 			if (err) {
 				console.log('formidable解析出错', err);
@@ -23,8 +26,10 @@ class Order extends BaseComponent{
 				})
 				return 
 			}
+
 			const {user_id, cart_id} = req.params;
 			const {address_id, come_from = 'mobile_web', deliver_time = '', description, entities, geohash, paymethod_id = 1} = fields;
+			
 			try{
 				if(!(entities instanceof Array) || !entities.length){
 					throw new Error('entities参数错误')
@@ -39,7 +44,7 @@ class Order extends BaseComponent{
 				}else if(!user_id){
 					throw new Error('未登录')
 				}
-			}catch(err){
+			} catch(err) {
 				console.log(err.message, err);
 				res.send({
 					status: 0,
@@ -48,8 +53,10 @@ class Order extends BaseComponent{
 				})
 				return 
 			}
+
 			let cartDetail;
 			let order_id;
+
 			try{
 				cartDetail = await CartModel.findOne({id: cart_id});
 				order_id = await this.getId('order_id');
@@ -62,6 +69,7 @@ class Order extends BaseComponent{
 				})
 				return 
 			}
+
 			const deliver_fee = {price: cartDetail.cart.deliver_amount};
 			const orderObj = {
 				basket: {
@@ -92,6 +100,7 @@ class Order extends BaseComponent{
 				user_id,
 				address_id,
 			}
+
 			try{
 				await OrderModel.create(orderObj);
 				res.send({
@@ -109,9 +118,12 @@ class Order extends BaseComponent{
 			}
 		})
 	}
+
+	// 31
 	async getOrders(req, res, next){
 		const user_id = req.params.user_id;
 		const {limit = 0, offset = 0} = req.query;
+
 		try{
 			if(!user_id || !Number(user_id)){
 				throw new Error('user_id参数错误')
@@ -129,9 +141,11 @@ class Order extends BaseComponent{
 			})
 			return 
 		}
+
 		try{
 			const orders = await OrderModel.find({user_id}).sort({id: -1}).limit(Number(limit)).skip(Number(offset));
 			const timeNow = new Date().getTime();
+
 			orders.map(item => {
 				if (timeNow - item.order_time < 900000) {
 					item.status_bar.title = '等待支付';
@@ -142,6 +156,7 @@ class Order extends BaseComponent{
 				item.save()
 				return item
 			})
+
 			res.send(orders);
 		}catch(err){
 			console.log('获取订单列表失败', err);
@@ -152,15 +167,18 @@ class Order extends BaseComponent{
 			})
 		}
 	}
+
+	// 32
 	async getDetail(req, res, next){
 		const {user_id, order_id} = req.params;
-		try{
+
+		try {
 			if (!user_id || !Number(user_id)) {
 				throw new Error('user_id参数错误')
-			}else if(!order_id || !Number(order_id)){
+			}else if(!order_id || !Number(order_id)) {
 				throw new Error('order_id参数错误')
 			}
-		}catch(err){
+		} catch(err) {
 			console.log(err.message);
 			res.send({
 				status: 0,
@@ -169,12 +187,14 @@ class Order extends BaseComponent{
 			})
 			return
 		}
-		try{
+
+		try {
 			const order = await OrderModel.findOne({id: order_id}, '-_id');
 			const addressDetail = await AddressModel.findOne({id: order.address_id});
 			const orderDetail = {...order, ...{addressDetail: addressDetail.address, consignee: addressDetail.name, deliver_time: '尽快送达', pay_method: '在线支付', phone: addressDetail.phone}};
+			
 			res.send(orderDetail)
-		}catch(err){
+		} catch(err) {
 			console.log('获取订单信息失败', err);
 			res.send({
 				status: 0,
@@ -183,16 +203,20 @@ class Order extends BaseComponent{
 			})
 		}
 	}
+
+	// 58
 	async getAllOrders(req, res, next){
 		const {restaurant_id, limit = 20, offset = 0} = req.query;
 		try{
 			let filter = {};
+
 			if (restaurant_id && Number(restaurant_id)) {
 				filter = {restaurant_id}
 			}
 
 			const orders = await OrderModel.find(filter).sort({id: -1}).limit(Number(limit)).skip(Number(offset));
 			const timeNow = new Date().getTime();
+			
 			orders.map(item => {
 				if (timeNow - item.order_time < 900000) {
 					item.status_bar.title = '等待支付';
@@ -203,6 +227,7 @@ class Order extends BaseComponent{
 				item.save()
 				return item
 			})
+
 			res.send(orders);
 		}catch(err){
 			console.log('获取订单数据失败', err);
@@ -213,8 +238,11 @@ class Order extends BaseComponent{
 			})
 		}
 	}
+
+	// 45
 	async getOrdersCount(req, res, next){
 		const restaurant_id = req.query.restaurant_id;
+		
 		try{
 			let filter = {};
 			if (restaurant_id && Number(restaurant_id)) {

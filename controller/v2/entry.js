@@ -6,6 +6,8 @@ class Entry {
 	constructor(){
 
 	}
+
+	// 5
 	async getEntry(req, res, next){
 		try{
 			const entries = await EntryModel.find({}, '-_id');

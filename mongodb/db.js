@@ -3,16 +3,11 @@
 import mongoose from 'mongoose';
 import config from 'config-lite';
 import chalk from 'chalk';
-mongoose.connect(config.url, {
-  // useMongoClient:true,
-  // useUnifiedTopology: true,
-  useNewUrlParser: true,
-  // useFindAndModify: true 
-});
-// https://stackoverflow.com/questions/51862570/mongoose-why-we-make-mongoose-promise-global-promise-when-setting-a-mongoo
+
 mongoose.Promise = global.Promise;
 
-// 访问默认连接 http://mongoosejs.net/docs/connections.html
+mongoose.connect(config.url, { useNewUrlParser: true });
+
 const db = mongoose.connection;
 
 db.once('open' ,() => {
@@ -36,3 +31,4 @@ db.on('close', function() {
 });
 
 export default db;
+

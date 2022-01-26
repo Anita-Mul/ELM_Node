@@ -14,12 +14,14 @@ class Shop extends AddressComponent{
 		this.getRestaurants = this.getRestaurants.bind(this);
 		this.searchResaturant = this.searchResaturant.bind(this);
 	}
-	//添加商铺
-	async addShop(req, res, next){
+
+	//添加商铺 13
+	async addShop(req, res, next) {
 		let restaurant_id;
-		try{
+
+		try {
 			restaurant_id = await this.getId('restaurant_id');
-		}catch(err){
+		} catch(err) {
 			console.log('获取商店id失败');
 			res.send({
 				type: 'ERROR_DATA',
@@ -27,9 +29,11 @@ class Shop extends AddressComponent{
 			})
 			return
 		}
+
 		const form = new formidable.IncomingForm();
+
 		form.parse(req, async (err, fields, files) => {
-			try{
+			try {
 				if (!fields.name) {
 					throw new Error('必须填写商店名称');
 				}else if(!fields.address){
@@ -43,7 +47,7 @@ class Shop extends AddressComponent{
 				}else if(!fields.category){
 					throw new Error('必须上传食品种类');
 				}
-			}catch(err){
+			} catch(err) {
 				console.log('前台参数出错', err.message);
 				res.send({
 					status: 0,
@@ -52,6 +56,7 @@ class Shop extends AddressComponent{
 				})
 				return
 			}
+
 			const exists = await ShopModel.findOne({name: fields.name});
 			if (exists) {
 				res.send({
@@ -61,7 +66,9 @@ class Shop extends AddressComponent{
 				})
 				return
 			}
+
 			const opening_hours = fields.startTime&&fields.endTime? fields.startTime + '/' + fields.endTime : "8:30/20:30";
+			
 			const newShop = {
 				name: fields.name,
 				address: fields.address,
@@ -105,6 +112,7 @@ class Shop extends AddressComponent{
 					registered_number: "",
 				},
 			}
+
 			//配送方式
 			if (fields.delivery_mode) {
 				Object.assign(newShop, {delivery_mode: {
@@ -114,6 +122,7 @@ class Shop extends AddressComponent{
 					text: "蜂鸟专送"
 				}})
 			}
+
 			//商店支持的活动
 			fields.activities.forEach((item, index) => {
 				switch(item.icon_name){
@@ -134,8 +143,10 @@ class Shop extends AddressComponent{
 						item.id = index + 1;
 						break;
 				}
+
 				newShop.activities.push(item);
 			})
+
 			if (fields.bao) {
 				newShop.supports.push({
 					description: "已加入“外卖保”计划，食品安全有保障",
@@ -145,6 +156,7 @@ class Shop extends AddressComponent{
 					name: "外卖保"
 				})
 			}
+
 			if (fields.zhun) {
 				newShop.supports.push({
 					description: "准时必达，超时秒赔",
@@ -154,6 +166,7 @@ class Shop extends AddressComponent{
 					name: "准时达"
 				})
 			}
+
 			if (fields.piao) {
 				newShop.supports.push({
 					description: "该商家支持开发票，请在下单时填写好发票抬头",
@@ -163,19 +176,22 @@ class Shop extends AddressComponent{
 					name: "开发票"
 				})
 			}
-			try{
+
+			try {
 				//保存数据，并增加对应食品种类的数量
 				const shop = new ShopModel(newShop);
 				await shop.save();
+
 				CategoryHandle.addCategory(fields.category)
 				Rating.initData(restaurant_id);
 				Food.initData(restaurant_id);
+
 				res.send({
 					status: 1,
 					sussess: '添加餐馆成功',
 					shopDetail: newShop
 				})
-			}catch(err){
+			} catch(err) {
 				console.log('商铺写入数据库失败');
 				res.send({
 					status: 0,
@@ -185,7 +201,8 @@ class Shop extends AddressComponent{
 			}
 		})
 	}
-	//获取餐馆列表
+
+	//获取餐馆列表 6
 	async getRestaurants(req, res, next){
 		const {
 			latitude,
@@ -216,12 +233,15 @@ class Shop extends AddressComponent{
 			})
 			return
 		}
+
 		let filter = {};
+
 		//获取对应食品种类
 		if (restaurant_category_ids.length && Number(restaurant_category_ids[0])) {
 			const category =  await CategoryHandle.findById(restaurant_category_ids[0]);
 			Object.assign(filter, {category})
 		}
+
 		//按照距离，评分，销量等排序
 		let sortBy = {};
 		if (Number(order_by)) {
@@ -300,6 +320,7 @@ class Shop extends AddressComponent{
 			})
 		}
 	}
+
 	//搜索餐馆
 	async searchResaturant(req, res, next){
 		const {geohash, keyword} = req.query;
@@ -346,6 +367,7 @@ class Shop extends AddressComponent{
 			})
 		}
 	}
+
 	//获取餐馆详情
 	async getRestaurantDetail(req, res, next){
 		const restaurant_id = req.params.restaurant_id;
@@ -370,6 +392,8 @@ class Shop extends AddressComponent{
 			})
 		}
 	}
+
+	// 49
 	async getShopCount(req, res, next){
 		try{
 			const count = await ShopModel.count();
@@ -386,6 +410,8 @@ class Shop extends AddressComponent{
 			})
 		}
 	}
+
+	// 50
 	async updateshop(req, res, next){
 		const form = new formidable.IncomingForm();
 		form.parse(req, async (err, fields, files) => {
@@ -441,6 +467,8 @@ class Shop extends AddressComponent{
 			}
 		})
 	}
+
+	// 51
 	async deleteResturant(req, res, next){
 		const restaurant_id = req.params.restaurant_id;
 		if (!restaurant_id || !Number(restaurant_id)) {

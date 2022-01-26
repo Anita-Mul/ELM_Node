@@ -20,6 +20,8 @@ class Rating {
 			throw new Error(err);
 		}
 	}
+
+	// 17
 	async getRatings(req, res, next){
 		const restaurant_id = req.params.restaurant_id;
 		if (!restaurant_id || !Number(restaurant_id)) {
@@ -30,6 +32,7 @@ class Rating {
 			})
 			return
 		}
+
 		try{
 			const ratings = await RatingModel.getData(restaurant_id, this.type[0]);
 			res.send(ratings)
@@ -42,6 +45,8 @@ class Rating {
 			})
 		}
 	}
+
+	// 18
 	async getScores(req, res, next){
 		const restaurant_id = req.params.restaurant_id;
 		if (!restaurant_id || !Number(restaurant_id)) {
@@ -52,6 +57,7 @@ class Rating {
 			})
 			return
 		}
+
 		try{
 			const scores = await RatingModel.getData(restaurant_id, this.type[1]);
 			res.send(scores)
@@ -64,6 +70,8 @@ class Rating {
 			})
 		}
 	}
+
+	// 19
 	async getTags(req, res, next){
 		const restaurant_id = req.params.restaurant_id;
 		if (!restaurant_id || !Number(restaurant_id)) {

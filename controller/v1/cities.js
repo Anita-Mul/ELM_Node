@@ -5,16 +5,19 @@ import pinyin from "pinyin"
 import AddressComponent from '../../prototype/addressComponent'
 
 
-class CityHandle extends AddressComponent{
-	constructor(){
+class CityHandle extends AddressComponent {
+	constructor() {
 		super()
 		this.getCity = this.getCity.bind(this);
 		this.getExactAddress = this.getExactAddress.bind(this);
 		this.pois = this.pois.bind(this);
 	}
-	async getCity(req, res, next){
+
+	// 1
+	async getCity(req, res, next) {
 		const type = req.query.type;
 		let cityInfo;
+
 		try{
 			switch (type){
 				case 'guess': 
@@ -42,7 +45,9 @@ class CityHandle extends AddressComponent{
 			});
 		}
 	}
-	async getCityById(req, res, next){
+
+	// 2
+	async getCityById(req, res, next) {
 		const cityid = req.params.id;
 		if (isNaN(cityid)) {
 			res.json({
@@ -61,15 +66,17 @@ class CityHandle extends AddressComponent{
 			});
 		}
 	}
-	async getCityName(req){
+
+	async getCityName(req) {
 		try{
 			const cityInfo = await this.guessPosition(req);
 			/*
 			汉字转换成拼音
 			 */
-	    const pinyinArr = pinyin(cityInfo.city, {
-		  	style: pinyin.STYLE_NORMAL,
+	    	const pinyinArr = pinyin(cityInfo.city, {
+		  		style: pinyin.STYLE_NORMAL,
 			});
+
 			let cityName = '';
 			pinyinArr.forEach(item => {
 				cityName += item[0];
@@ -79,7 +86,8 @@ class CityHandle extends AddressComponent{
 			return '北京';
 		}
 	}
-	async getExactAddress(req, res, next){
+
+	async getExactAddress(req, res, next) {
 		try{
 			const position = await this.geocoder(req)
 			res.send(position);
@@ -91,7 +99,8 @@ class CityHandle extends AddressComponent{
 			});
 		}
 	}
-	async pois(req, res, next){
+
+	async pois(req, res, next) {
 		try{
 			const geohash = req.params.geohash || '';
 			if (geohash.indexOf(',') == -1) {
@@ -104,6 +113,7 @@ class CityHandle extends AddressComponent{
 			}
 			const poisArr = geohash.split(',');
 			const result = await this.getpois(poisArr[0], poisArr[1]);
+			
 			const address = {
 				address: result.result.address,
 				city: result.result.address_component.province,
@@ -112,6 +122,7 @@ class CityHandle extends AddressComponent{
 				longitude: poisArr[1],
 				name: result.result.formatted_addresses.recommend,
 			}
+			
 			res.send(address);
 		}catch(err){
 			console.log('getpois返回信息失败', err);

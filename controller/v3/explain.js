@@ -6,6 +6,8 @@ class Explain {
 	constructor(){
 
 	}
+
+	// 33
 	async getExpalin(req, res, next){
 		try{
 			const explain = await ExplainModel.findOne();

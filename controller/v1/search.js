@@ -4,20 +4,24 @@ import AddressComponent from '../../prototype/addressComponent';
 import Cities from '../../models/v1/cities';
 import CityHandle from './cities'
 
-class SearchPlace extends AddressComponent{
-	constructor(){
+class SearchPlace extends AddressComponent {
+	constructor() {
 		super()
 		this.search = this.search.bind(this)
 	}
-	async search(req, res, next){
-		let {type = 'search', city_id, keyword} = req.query;
+
+	// 3 
+	async search(req, res, next) {
+		let { type = 'search', city_id, keyword } = req.query;
+
 		if (!keyword) {
 			res.send({
 				name: 'ERROR_QUERY_TYPE',
 				message: '参数错误',
 			})
+
 			return
-		}else if(isNaN(city_id)){
+		} else if (isNaN(city_id)){
 			try{
 				const cityname = await CityHandle.getCityName(req);
 				const cityInfo = await Cities.cityGuess(cityname);
@@ -30,7 +34,8 @@ class SearchPlace extends AddressComponent{
 				})
 			}
 		}
-		try{
+
+		try {
 			const cityInfo = await Cities.getCityById(city_id);
 			const resObj = await this.searchPlace(keyword, cityInfo.name, type);
 			const cityList = [];
@@ -44,7 +49,7 @@ class SearchPlace extends AddressComponent{
 				})
 			});
 			res.send(cityList);
-		}catch(err){
+		} catch(err) {
 			res.send({
 				name: 'GET_ADDRESS_ERROR',
 				message: '获取地址信息失败',

@@ -29,18 +29,22 @@ class Food extends BaseComponent{
 		this.getSpecfoods = this.getSpecfoods.bind(this);
 		this.updateFood = this.updateFood.bind(this);
 	}
+
 	async initData(restaurant_id){
 		for (let i = 0; i < this.defaultData.length; i++) {
 			let category_id;
+
 			try{
 				category_id = await this.getId('category_id');
 			}catch(err){
 				console.log('获取category_id失败');
 				throw new Error(err);
 			}
+
 			const defaultData = this.defaultData[i];
 			const Category = {...defaultData, id: category_id, restaurant_id};
 			const newFood = new MenuModel(Category);
+
 			try{
 				await newFood.save();
 				console.log('初始化食品数据成功');
@@ -50,6 +54,7 @@ class Food extends BaseComponent{
 			}
 		}
 	}
+
 	async getCategory(req, res, next){
 		const restaurant_id = req.params.restaurant_id;
 		try{
@@ -67,8 +72,10 @@ class Food extends BaseComponent{
 			})
 		}
 	}
+
 	async addCategory(req, res, next){
 		const form = new formidable.IncomingForm();
+
 		form.parse(req, async (err, fields, files) => {
 			try{
 				if (!fields.name) {
@@ -85,10 +92,11 @@ class Food extends BaseComponent{
 				})
 				return
 			}
+
 			let category_id;
-			try{
+			try {
 				category_id = await this.getId('category_id');
-			}catch(err){
+			} catch(err) {
 				console.log('获取category_id失败');
 				res.send({
 					type: 'ERROR_DATA',
@@ -96,6 +104,7 @@ class Food extends BaseComponent{
 				})
 				return
 			}
+
 			const foodObj = {
 				name: fields.name,
 				description: fields.description, 
@@ -120,10 +129,12 @@ class Food extends BaseComponent{
 			}
 		})
 	}
+
 	async addFood(req, res, next){
 		const form = new formidable.IncomingForm();
+
 		form.parse(req, async (err, fields, files) => {
-			try{
+			try {
 				if (!fields.name) {
 					throw new Error('必须填写食品名称');
 				}else if(!fields.image_path){
@@ -135,7 +146,7 @@ class Food extends BaseComponent{
 				}else if(!fields.restaurant_id){
 					throw new Error('餐馆ID错误');
 				}
-			}catch(err){
+			} catch(err) {
 				console.log('前台参数错误', err.message);
 				res.send({
 					status: 0,
@@ -144,8 +155,11 @@ class Food extends BaseComponent{
 				})
 				return
 			}
+
+
 			let category;
 			let restaurant;
+
 			try{
 				category = await MenuModel.findOne({id: fields.category_id});
 				restaurant = await ShopModel.findOne({id: fields.restaurant_id});
@@ -158,6 +172,8 @@ class Food extends BaseComponent{
 				})
 				return
 			}
+
+
 			let item_id;
 			try{
 				item_id = await this.getId('item_id');
@@ -170,9 +186,11 @@ class Food extends BaseComponent{
 				})
 				return
 			}
+
 			const rating_count = Math.ceil(Math.random()*1000);
 			const month_sales = Math.ceil(Math.random()*1000);
 			const tips = rating_count + "评价 月售" + month_sales + "份";
+
 			const newFood = {
 				name: fields.name,
 				description: fields.description,
@@ -191,6 +209,7 @@ class Food extends BaseComponent{
 				specfoods: [],
 				specifications: [],
 			}
+
 			if (fields.activity) {
 				newFood.activity = {
 					image_text_color: 'f1884f',
@@ -198,6 +217,7 @@ class Food extends BaseComponent{
 					image_text: fields.activity,
 				}
 			}
+
 			if (fields.attributes.length) {
 				fields.attributes.forEach(item => {
 					let attr;
@@ -218,6 +238,7 @@ class Food extends BaseComponent{
 					newFood.attributes.push(attr);
 				})
 			}
+
 			try{
 				const [specfoods, specifications] = await this.getSpecfoods(fields, item_id);
 				newFood.specfoods = specfoods;
@@ -231,6 +252,7 @@ class Food extends BaseComponent{
 				})
 				return
 			}
+
 			try{
 				const foodEntity = await FoodModel.create(newFood);
 				category.foods.push(foodEntity);
@@ -250,16 +272,19 @@ class Food extends BaseComponent{
 			}
 		})
 	}
+
 	async getSpecfoods(fields, item_id){
 		let specfoods = [], specifications = [];
 		if (fields.specs.length < 2) {
 			let food_id, sku_id;
+
 			try{
 				sku_id = await this.getId('sku_id');
 				food_id = await this.getId('food_id');
 			}catch(err){
 				throw new Error('获取sku_id、food_id失败')
 			}
+
 			specfoods.push({
 				packing_fee: fields.specs[0].packing_fee,
 				price: fields.specs[0].price,
@@ -278,14 +303,17 @@ class Food extends BaseComponent{
 				values: [],
 				name: "规格"
 			})
+
 			for (let i = 0; i < fields.specs.length; i++) {
 				let food_id, sku_id;
+
 				try{
 					sku_id = await this.getId('sku_id');
 					food_id = await this.getId('food_id');
 				}catch(err){
 					throw new Error('获取sku_id、food_id失败')
 				}
+
 				specfoods.push({
 					packing_fee: fields.specs[i].packing_fee,
 					price: fields.specs[i].price,
@@ -302,6 +330,7 @@ class Food extends BaseComponent{
 					recent_rating: (Math.random()*5).toFixed(1),
 					recent_popularity: Math.ceil(Math.random()*1000),
 				})
+
 				specifications[0].values.push(fields.specs[i].specs);
 			}
 		}
@@ -310,6 +339,7 @@ class Food extends BaseComponent{
 	async getMenu(req, res, next){
 		const restaurant_id = req.query.restaurant_id;
 		const allMenu = req.query.allMenu;
+
 		if (!restaurant_id || !Number(restaurant_id)) {
 			console.log('获取餐馆参数ID错误');
 			res.send({
@@ -319,12 +349,14 @@ class Food extends BaseComponent{
 			})
 			return
 		}
+
 		let filter;
 		if (allMenu) {
 			filter = {restaurant_id}
 		}else{
 			filter = {restaurant_id, $where: function(){return this.foods.length}};
 		}
+
 		try{
 			const menu = await MenuModel.find(filter, '-_id');
 			res.send(menu);
@@ -337,6 +369,7 @@ class Food extends BaseComponent{
 			})
 		}
 	}
+	
 	async getMenuDetail(req, res, next){
 		const category_id = req.params.category_id;
 		if (!category_id || !Number(category_id)) {

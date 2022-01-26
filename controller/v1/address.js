@@ -8,10 +8,12 @@ class Address extends BaseComponent{
 	constructor(){
 		super()
 		this.addAddress = this.addAddress.bind(this);
-
 	}
+
+	// 22
 	async getAddress(req, res, next){
 		const user_id = req.params.user_id;
+
 		if (!user_id || !Number(user_id)) {
 			res.send({
 				type: 'ERROR_USER_ID',
@@ -19,6 +21,7 @@ class Address extends BaseComponent{
 			})
 			return 
 		}
+
 		try{
 			const addressList = await AddressModel.find({user_id}, '-_id');
 			res.send(addressList)
@@ -30,11 +33,15 @@ class Address extends BaseComponent{
 			})
 		}
 	}
+
+	// 28
 	async addAddress(req, res, next){
 		const form = new formidable.IncomingForm();
+
 		form.parse(req, async (err, fields, files) => {
 			const user_id = req.params.user_id;
-			const {address, address_detail, geohash, name, phone, phone_bk, poi_type = 0, sex, tag, tag_type} = fields;
+			const { address, address_detail, geohash, name, phone, phone_bk, poi_type = 0, sex, tag, tag_type } = fields;
+
 			try{
 				if (!user_id || !Number(user_id)) {
 					throw new Error('用户ID参数错误');
@@ -64,6 +71,7 @@ class Address extends BaseComponent{
 				})
 				return
 			}
+
 			try{	
 				const address_id = await this.getId('address_id');
 				const newAddress = {
@@ -79,6 +87,7 @@ class Address extends BaseComponent{
 					tag_type,
 					user_id,
 				}
+
 				await AddressModel.create(newAddress);
 				res.send({
 					status: 1,
@@ -94,8 +103,11 @@ class Address extends BaseComponent{
 			}
 		})
 	}
+
+	// 29
 	async deleteAddress(req, res, next){
 		const {user_id, address_id} = req.params;
+
 		if (!user_id || !Number(user_id) || !address_id || !Number(address_id)) {
 			res.send({
 				type: 'ERROR_PARAMS',
@@ -103,13 +115,15 @@ class Address extends BaseComponent{
 			})
 			return 
 		}
-		try{
+
+		try {
 			await AddressModel.findOneAndRemove({id: address_id});
+
 			res.send({
 				status: 1,
 				success: '删除地址成功',
 			})
-		}catch(err){
+		} catch(err) {
 			console.log('删除收获地址失败', err);
 			res.send({
 				type: 'ERROR_DELETE_ADDRESS',
@@ -117,8 +131,11 @@ class Address extends BaseComponent{
 			})
 		}
 	}
+
+	// 
 	async getAddAddressById(req, res, next){
 		const address_id = req.params.address_id;
+
 		if (!address_id || !Number(address_id)) {
 			res.send({
 				type: 'ERROR_PARAMS',
@@ -126,6 +143,7 @@ class Address extends BaseComponent{
 			})
 			return 
 		}
+		
 		try{
 			const address = await AddressModel.findOne({id: address_id});
 			res.send(address)
