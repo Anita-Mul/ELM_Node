@@ -5,8 +5,9 @@ import path from 'path'
 import fs from 'fs'
 import qiniu from 'qiniu'
 import gm from 'gm'
-qiniu.conf.ACCESS_KEY = 'Ep714TDrVhrhZzV2VJJxDYgGHBAX-KmU1xV1SQdS';
-qiniu.conf.SECRET_KEY = 'XNIW2dNffPBdaAhvm9dadBlJ-H6yyCTIJLxNM_N6';
+
+qiniu.conf.ACCESS_KEY = 'pRCklr6IZpAapVbqfNYZj5uqvapKLvo-TglAECZN';
+qiniu.conf.SECRET_KEY = '4az-XoQYjMkd3W0IfLQ9AFzebyEY8RvzSK8XT3ib';
 
 
 export default class BaseComponent {
@@ -49,6 +50,7 @@ export default class BaseComponent {
 		}
 
 		let responseJson;
+
 		try {
 			const response = await fetch(url, requestConfig);
 			if (resType === 'TEXT') {
@@ -71,6 +73,7 @@ export default class BaseComponent {
 			throw new Error('id类型错误');
 			return
 		}
+
 		try{
 			const idData = await Ids.findOne();
 			idData[type] ++ ;
@@ -135,6 +138,7 @@ export default class BaseComponent {
 				const repath = './public/img/' + fullName;
 
 				try{
+					// 改了名字就相当于移动了文件的位置
 					fs.renameSync(files.file.path, repath);
 					gm(repath)
 					.resize(200, 200, "!")
@@ -166,9 +170,9 @@ export default class BaseComponent {
 
 			form.parse(req, async (err, fields, files) => {
 				let img_id;
-				try{
+				try {
 					img_id = await this.getId('img_id');
-				}catch(err){
+				} catch(err) {
 					console.log('获取图片id失败');
 					fs.unlinkSync(files.file.path);
 					reject('获取图片id失败')
@@ -180,9 +184,11 @@ export default class BaseComponent {
 
 				try{
 					const key = hashName + extname;
-					await fs.rename(files.file.path, repath);
-					const token = this.uptoken('node-elm', key);
+					fs.renameSync(files.file.path, repath);
+					
+					const token = this.uptoken('elm-project', key);
 					const qiniuImg = await this.uploadFile(token.toString(), key, repath);
+					
 					fs.unlinkSync(repath);
 					resolve(qiniuImg)
 				}catch(err){

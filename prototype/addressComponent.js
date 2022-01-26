@@ -20,7 +20,7 @@ class AddressComponent extends BaseComponent {
 	}
 
 	//获取定位地址
-	async guessPosition(req){
+	async guessPosition(req) {
 		return new Promise(async (resolve, reject) => {
 			let ip;
 			const defaultIp = '180.158.102.141';
@@ -90,8 +90,8 @@ class AddressComponent extends BaseComponent {
 		try{
 			const resObj = await this.fetch('http://apis.map.qq.com/ws/place/v1/search', {
 				key: this.tencentkey,
-				keyword: encodeURIComponent(keyword),
-				boundary: 'region(' + encodeURIComponent(cityName) + ',0)',
+				keyword: encodeURIComponent(keyword),						 // 搜索关键字
+				boundary: 'region(' + encodeURIComponent(cityName) + ',0)',  // 搜索城市名称，0 标识仅在当前城市搜索
 				page_size: 10,
 			});
 			if (resObj.status == 0) {
@@ -103,6 +103,7 @@ class AddressComponent extends BaseComponent {
 			throw new Error(err);
 		}
 	}
+
 	//测量距离
 	async getDistance(from, to, type){
 		try{
@@ -131,6 +132,7 @@ class AddressComponent extends BaseComponent {
 					if(Math.floor(timevalue / 3600)) {
 						durationtime = Math.floor(timevalue / 3600) + '小时' + durationtime;
 					}
+
 					positionArr.push({
 						distance: item.distance.text,
 						order_lead_time: durationtime,
@@ -177,6 +179,7 @@ class AddressComponent extends BaseComponent {
 	 			params.key = this.tencentkey4;
 	 			res = await this.fetch('http://apis.map.qq.com/ws/geocoder/v1/', params);
 	 		}
+			 
 			if (res.status == 0) {
 				return res
 			}else{

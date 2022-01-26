@@ -296,6 +296,7 @@ class User extends AddressComponent {
 		const sid = req.session.user_id;
 		const pid = req.params.user_id;
 		const user_id = sid || pid;
+	
 		if (!user_id || !Number(user_id)) {
 			console.log('更新头像，user_id错误', user_id)
 			res.send({
