@@ -76,10 +76,14 @@ class Carts extends AddressComponent{
 			let price = 0; //食品价格
 
 			entities[0].map(item => {
+				// 商品价格 * 商品数量
 				price += item.price * item.quantity;
 				if (item.packing_fee) {
+					// 包装费 * 商品数量
 					this.extra[0].price += item.packing_fee*item.quantity;
 				}
+
+				// 商品规格
 				if (item.specs[0]) {
 					return item.name = item.name + '-' + item.specs[0];
 				}
@@ -87,6 +91,7 @@ class Carts extends AddressComponent{
 
 			//食品总价格
 			const total = price + this.extra[0].price * this.extra[0].quantity + deliver_amount;
+			
 			//是否支持发票
 			let invoice = {
 				is_available: false,

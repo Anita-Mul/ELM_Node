@@ -6,7 +6,7 @@ import BaseComponent from '../../prototype/baseComponent'
 import formidable from 'formidable'
 
 class Food extends BaseComponent{
-	constructor(){
+	constructor() {
 		super();
 		this.defaultData = [{
 			name: '热销榜',
@@ -30,7 +30,8 @@ class Food extends BaseComponent{
 		this.updateFood = this.updateFood.bind(this);
 	}
 
-	async initData(restaurant_id){
+
+	async initData(restaurant_id) {
 		for (let i = 0; i < this.defaultData.length; i++) {
 			let category_id;
 
@@ -256,7 +257,8 @@ class Food extends BaseComponent{
 			try{
 				const foodEntity = await FoodModel.create(newFood);
 				category.foods.push(foodEntity);
-				category.markModified('foods');
+				
+				category.markModified('foods');   // 完成嵌套数据的修改
 				await category.save();
 				res.send({
 					status: 1,
@@ -336,6 +338,7 @@ class Food extends BaseComponent{
 		}
 		return [specfoods, specifications]
 	}
+
 	async getMenu(req, res, next){
 		const restaurant_id = req.query.restaurant_id;
 		const allMenu = req.query.allMenu;
@@ -393,6 +396,7 @@ class Food extends BaseComponent{
 			})
 		}
 	}
+
 	async getFoods(req, res, next){
 		const {restaurant_id, limit = 20, offset = 0} = req.query;
 		try{
@@ -412,6 +416,7 @@ class Food extends BaseComponent{
 			})
 		}
 	}
+
 	async getFoodsCount(req, res, next){
 		const restaurant_id = req.query.restaurant_id;
 		try{
@@ -434,6 +439,7 @@ class Food extends BaseComponent{
 			})
 		}
 	}
+
 	async updateFood(req, res, next){
 		const form = new formidable.IncomingForm();
 		form.parse(req, async (err, fields, files) => {
@@ -497,6 +503,7 @@ class Food extends BaseComponent{
 			}
 		})
 	}
+
 	async deleteFood(req, res, next){
 		const food_id = req.params.food_id;
 		if (!food_id || !Number(food_id)) {
