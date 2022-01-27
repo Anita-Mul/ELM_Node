@@ -1,129 +1,129 @@
 export default [
 {
-count: 0,
-ids: [
-207,
-220,
-260,
-233,
-239,
-244,
-248,
-252
-],
-image_url: "",
-level: 1,
-name: "全部商家"
+    count: 0,
+    ids: [
+        207,
+        220,
+        260,
+        233,
+        239,
+        244,
+        248,
+        252
+    ],
+    image_url: "",
+    level: 1,
+    name: "全部商家"
 },
 {
-count: 0,
-id: 207,
-ids: [
-207
-],
-image_url: "bff533cf9617bd57fe1dfb05603bebcfpng",
-level: 1,
-name: "快餐便当",
-sub_categories: [
-{
-count: 0,
-id: 207,
-image_url: "44545a0518aab93817cfe611e88bb702png",
-level: 1,
-name: "全部快餐便当"
-},
-{
-count: 0,
-id: 265,
-image_url: "be84bc4d7cf12deee9115b16eb099302png",
-level: 2,
-name: "简餐"
-},
-{
-count: 0,
-id: 209,
-image_url: "66b78c0e7099c278977298d7c6042c80png",
-level: 2,
-name: "盖浇饭"
-},
-{
-count: 0,
-id: 213,
-image_url: "02e6c9e3bf338ec0ba0d923717b9f8acpng",
-level: 2,
-name: "米粉面馆"
-},
-{
-count: 0,
-id: 215,
-image_url: "af6ab89041b3e77fe115d1e4b72d69f0png",
-level: 2,
-name: "包子粥店"
-},
-{
-count: 0,
-id: 219,
-image_url: "eddd9dc7e5d21debe2fb278ae01fefe9png",
-level: 2,
-name: "香锅砂锅"
-},
-{
-count: 0,
-id: 214,
-image_url: "4d347d0dc65dd75fb2911256aabf2327png",
-level: 2,
-name: "麻辣烫"
-},
-{
-count: 0,
-id: 217,
-image_url: "65b575c2278a3f6e5c70af45b578cbeepng",
-level: 2,
-name: "饺子馄饨"
-},
-{
-count: 0,
-id: 212,
-image_url: "7d47af01fccc46fc3621865a9cc07c93png",
-level: 2,
-name: "汉堡"
-},
-{
-count: 0,
-id: 216,
-image_url: "4c6af48f68284ad91c6d95d2bd3f4aa6png",
-level: 2,
-name: "生煎锅贴"
-},
-{
-count: 0,
-id: 267,
-image_url: "79637dc36d67de4fe48d121ea77b3eddpng",
-level: 2,
-name: "黄焖鸡米饭"
-},
-{
-count: 0,
-id: 266,
-image_url: "c09d1ff71384e2e1664f72e0a928810dpng",
-level: 2,
-name: "烧腊饭"
-},
-{
-count: 0,
-id: 269,
-image_url: "180cb951c2d4eb2e220debf4571bf83apng",
-level: 2,
-name: "煲仔饭"
-},
-{
-count: 0,
-id: 268,
-image_url: "cdf208b399b854e456f23d28b1972e97png",
-level: 2,
-name: "咖喱饭"
-}
-]
+    count: 0,
+    id: 207,
+    ids: [
+        207
+    ],
+    image_url: "bff533cf9617bd57fe1dfb05603bebcfpng",
+    level: 1,
+    name: "快餐便当",
+    sub_categories: [
+        {
+            count: 0,
+            id: 207,
+            image_url: "44545a0518aab93817cfe611e88bb702png",
+            level: 1,
+            name: "全部快餐便当"
+        },
+        {
+            count: 0,
+            id: 265,
+            image_url: "be84bc4d7cf12deee9115b16eb099302png",
+            level: 2,
+            name: "简餐"
+        },
+        {
+            count: 0,
+            id: 209,
+            image_url: "66b78c0e7099c278977298d7c6042c80png",
+            level: 2,
+            name: "盖浇饭"
+        },
+        {
+            count: 0,
+            id: 213,
+            image_url: "02e6c9e3bf338ec0ba0d923717b9f8acpng",
+            level: 2,
+            name: "米粉面馆"
+        },
+        {
+            count: 0,
+            id: 215,
+            image_url: "af6ab89041b3e77fe115d1e4b72d69f0png",
+            level: 2,
+            name: "包子粥店"
+        },
+        {
+            count: 0,
+            id: 219,
+            image_url: "eddd9dc7e5d21debe2fb278ae01fefe9png",
+            level: 2,
+            name: "香锅砂锅"
+        },
+        {
+            count: 0,
+            id: 214,
+            image_url: "4d347d0dc65dd75fb2911256aabf2327png",
+            level: 2,
+            name: "麻辣烫"
+        },
+        {
+            count: 0,
+            id: 217,
+            image_url: "65b575c2278a3f6e5c70af45b578cbeepng",
+            level: 2,
+            name: "饺子馄饨"
+        },
+        {
+            count: 0,
+            id: 212,
+            image_url: "7d47af01fccc46fc3621865a9cc07c93png",
+            level: 2,
+            name: "汉堡"
+        },
+        {
+            count: 0,
+            id: 216,
+            image_url: "4c6af48f68284ad91c6d95d2bd3f4aa6png",
+            level: 2,
+            name: "生煎锅贴"
+        },
+        {
+            count: 0,
+            id: 267,
+            image_url: "79637dc36d67de4fe48d121ea77b3eddpng",
+            level: 2,
+            name: "黄焖鸡米饭"
+        },
+        {
+            count: 0,
+            id: 266,
+            image_url: "c09d1ff71384e2e1664f72e0a928810dpng",
+            level: 2,
+            name: "烧腊饭"
+        },
+        {
+            count: 0,
+            id: 269,
+            image_url: "180cb951c2d4eb2e220debf4571bf83apng",
+            level: 2,
+            name: "煲仔饭"
+        },
+        {
+            count: 0,
+            id: 268,
+            image_url: "cdf208b399b854e456f23d28b1972e97png",
+            level: 2,
+            name: "咖喱饭"
+        }
+    ]
 },
 {
 count: 0,

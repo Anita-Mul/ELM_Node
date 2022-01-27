@@ -23,20 +23,25 @@ const categorySchema = new Schema({
 	]
 });
 
+// 例：type = "快餐便当/简餐"
 categorySchema.statics.addCategory = async function (type){
 	const categoryName = type.split('/');
 	try{
 		const allcate = await this.findOne();
 		const subcate = await this.findOne({name: categoryName[0]});
+
 		allcate.count ++;
-		subcate.count ++ ;
+		subcate.count ++;
+
 		subcate.sub_categories.map(item => {
 			if (item.name == categoryName[1]) {
 				return item.count ++ 
 			}
 		})
+
 		await allcate.save();
 		await subcate.save();
+
 		console.log('保存cetegroy成功');
 		return
 	}catch(err){

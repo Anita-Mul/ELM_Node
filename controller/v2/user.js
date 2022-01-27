@@ -61,6 +61,7 @@ class User extends AddressComponent {
 			}
 
 			const newpassword = this.encryption(password);
+
 			try{
 				const user = await UserModel.findOne({username});
 
@@ -134,6 +135,7 @@ class User extends AddressComponent {
 
 	async getInfoById(req, res, next){
 		const user_id = req.params.user_id;
+
 		if (!user_id || !Number(user_id)) {
 			console.log('通过ID获取用户信息失败')
 			res.send({
@@ -143,6 +145,7 @@ class User extends AddressComponent {
 			})
 			return 
 		}
+		
 		try{
 			const userinfo = await UserInfoModel.findOne({user_id}, '-_id');
 			res.send(userinfo) 

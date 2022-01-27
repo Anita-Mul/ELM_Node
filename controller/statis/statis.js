@@ -11,7 +11,8 @@ class Statis {
 
 	}
 
-	// 40
+	// 40 获得某日API请求量
+	// http://localhost:8001/statis/api/2017-05-29/count
 	async apiCount(req, res, next){
 		const date = req.params.date;
 		if (!date) {
@@ -40,7 +41,7 @@ class Statis {
 		}
 	}
 
-	// 41
+	// 41 获得所有 API 请求量
 	async apiAllCount(req, res, next){
 		try{
 			const count = await StatisModel.count()
@@ -58,6 +59,7 @@ class Statis {
 		}
 	}
 
+	// 获得所有 API 请求信息
 	async allApiRecord(req, res, next){
 		try{
 			const allRecord = await StatisModel.find({}, '-_id -__v')
@@ -72,7 +74,7 @@ class Statis {
 		}
 	}
 
-	// 42
+	// 42 获得某日用户注册量
 	async userCount(req, res, next){
 		const date = req.params.date;
 		if (!date) {
@@ -101,7 +103,7 @@ class Statis {
 		}
 	}
 
-	
+	// 获得某日管理员注册量
 	async adminCount(req, res, next){
 		const date = req.params.date;
 		if (!date) {
@@ -129,7 +131,7 @@ class Statis {
 		}
 	}
 
-	// 44
+	// 44 获得某日订单数量
 	async orderCount(req, res, next){
 		const date = req.params.date;
 		if (!date) {

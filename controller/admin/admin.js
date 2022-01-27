@@ -26,6 +26,7 @@ class Admin extends AddressComponent {
 					type: 'FORM_DATA_ERROR',
 					message: '表单信息错误'
 				})
+
 				return
 			}
 
@@ -270,6 +271,7 @@ class Admin extends AddressComponent {
 
 	async updateAvatar(req, res, next){
 		const admin_id = req.params.admin_id;
+
 		if (!admin_id || !Number(admin_id)) {
 			console.log('admin_id参数错误', admin_id)
 			res.send({
@@ -283,10 +285,12 @@ class Admin extends AddressComponent {
 		try{
 			const image_path = await this.getPath(req);
 			await AdminModel.findOneAndUpdate({id: admin_id}, {$set: {avatar: image_path}});
+			
 			res.send({
 				status: 1,
 				image_path,
 			})
+			
 			return
 		}catch(err){
 			console.log('上传图片失败', err);

@@ -10,18 +10,18 @@ class Hongbao extends BaseComponent{
 		this.getExpiredHongbao = this.getExpiredHongbao.bind(this);
 	}
 
-	// 34
+	// 34 可用红包
 	async getHongbao(req, res, next) {
 		this.hongbaoHandle(req, res, 'intime')
 	}
 
-	// 35
+	// 35 过期红包
 	async getExpiredHongbao(req, res, next) {
 		this.hongbaoHandle(req, res, 'expired')
 	}
 
 	async hongbaoHandle(req, res, type) {
-		const present_status = type == 'intime'? 1 : 4;
+		const present_status = type == 'intime' ? 1 : 4;
 		const user_id = req.params.user_id;
 		const {limit = 0, offset = 0} = req.query;
 

@@ -9,6 +9,7 @@ class Statistic extends BaseComponent {
 		super()
 		this.apiRecord = this.apiRecord.bind(this)
 	}
+	
 	async apiRecord(req, res, next){
 		try{
 			const statis_id = await this.getId('statis_id')

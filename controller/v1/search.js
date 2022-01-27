@@ -39,6 +39,7 @@ class SearchPlace extends AddressComponent {
 			const cityInfo = await Cities.getCityById(city_id);
 			const resObj = await this.searchPlace(keyword, cityInfo.name, type);
 			const cityList = [];
+
 			resObj.data.forEach((item, index) => {
 				cityList.push({
 					name: item.title,
@@ -48,6 +49,7 @@ class SearchPlace extends AddressComponent {
 					geohash: item.location.lat + ',' + item.location.lng,
 				})
 			});
+			
 			res.send(cityList);
 		} catch(err) {
 			res.send({

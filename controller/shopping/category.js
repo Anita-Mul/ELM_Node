@@ -11,7 +11,7 @@ class Category extends BaseComponent{
 		super()
 	}
 
-	//获取所有餐馆分类和数量 8
+	// 获取所有商铺分类列表 8
 	async getCategories(req, res, next){
 		try{
 			const categories = await CategoryModel.find({}, '-_id');
@@ -34,6 +34,7 @@ class Category extends BaseComponent{
 		}
 	}
 
+	// 返回：全部快餐便当：简餐/盖浇饭
 	async findById(id) {
 		try{
 			const CateEntity = await CategoryModel.findOne({'sub_categories.id': id});
