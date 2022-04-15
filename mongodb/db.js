@@ -6,7 +6,7 @@ import chalk from 'chalk';
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(config.url, { useNewUrlParser: true });
+mongoose.connect(config.url, { useMongoClient: true });
 
 const db = mongoose.connection;
 
@@ -29,6 +29,11 @@ db.on('close', function() {
     );
     mongoose.connect(config.url, {server:{auto_reconnect:true}});
 });
+
+
+process.on('SIGINT', function() {
+    mongoose.disconnect();
+})
 
 export default db;
 

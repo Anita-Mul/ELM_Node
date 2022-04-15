@@ -55,5 +55,7 @@ app.use(express.static('./public'));
 app.listen(process.env.PORT || config.port, () => {
 	console.log(
 		chalk.green(`成功监听端口：${config.port}`)
-	)
+	);
+
+	process.send('ready');
 });

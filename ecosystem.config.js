@@ -1,33 +1,26 @@
 module.exports = {
   apps : [{
-    name: 'node-elm',
-    script: 'index.js',
-    instances: 1 ,
-    autorestart: true,
-    watch: false,
-    max_memory_restart: '1G',
-    output: 'logs/out.log',
-    error: 'logs/error.log',
-    log: 'logs/combined.outerr.log',
+    name: 'elm_node',
+    script: 'ENABLE_NODE_LOG=YES node index.js',
     env: {
       NODE_ENV: 'development'
     },
     env_production: {
-      NODE_ENV: 'production',
-      HOST: '0.0.0.0',
-      PORT: 8001,
-    }
+      NODE_ENV: 'production'
+    },
+    watch: ["app.js", "ecosystem.config.js", "prototype", "config", "elmConfig.json", "middlewares", "controller", "index.js", "models", "mongodb", "routes"],
+    watch_delay: 1000,
+    ignore_watch: ["node_modules", "logs", "yarn.lock", "public", "package.json", "README.md", "COPYING", "InitData", "package-lock.json"],
+    max_memory_restart: '300M',
+    exp_backoff_restart_delay: 100,
+    error_file: '/myproject/real_project/ELM_Node/logs/pm2/ELMerr.log',
+    out_file: '/myproject/real_project/ELM_Node/logs/pm2/ELMout.log',
+    pid_file: '/myproject/real_project/ELM_Node/logs/pm2/app-pm_id.pid',
+    log_date_format: 'YYYY-MM-DD HH:mm Z',
+    instances : "max",
+    kill_timeout : 3000,
+    wait_ready: true,
+    listen_timeout: 10000
   }],
-  deploy: {
-    production: {
-      user: 'root',
-      host: ['139.224.234.213'],
-      port: '22',
-      ref : 'origin/master',
-      repo: 'git@github.com:bailicangdu/node-elm.git',
-      path: '/root/mygit/node-elm',
-      'ssh_options': 'StrictHostKeyChecking=no',
-      'post-deploy': 'npm install && pm2 reload ecosystem.config.js --env production',
-    }
-  }
 };
+
