@@ -34,6 +34,32 @@ async function reqMiddleware (req, res, next, log4js) {
     await next();
 }
 
-export default {
+// 输出中间件，定义 param body query cookie 的输出格式
+function logParam(req, res, next) {
+    req.logger.info(`params:${JSON.stringify(req.params)}`);
+}
+
+function logBody(req, res, next) {
+    req.logger.info(`body:${JSON.stringify(req.body)}`);
+}
+
+function logQuery(req, res, next) {
+    req.logger.info(`query:${JSON.stringify(req.query)}`);
+}
+
+function logcookie(req, res, next) {
+    req.logger.info(`cookies:${JSON.stringify(req.cookies)}`);
+}
+
+function logBodyParam(req, res, next) {
+    req.logger.info(`body:${JSON.stringify(req.body)}   params:${JSON.stringify(req.params)}`);
+}
+
+export {
     reqMiddleware,
+    logParam,
+    logBody,
+    logQuery,
+    logcookie,
+    logBodyParam
 }

@@ -29,7 +29,7 @@ npm install 或 yarn(推荐)
 
 npm run dev
 
-访问: http://localhost:8001
+访问: http://localhost:3000
 
 ```
 
@@ -107,11 +107,11 @@ npm run dev
 
 #### 请求URL:  
 ```
-http://localhost:8001/v1/cities
+http://localhost:3000/v1/cities
 ```
 
 #### 示例：
- [http://localhost:8001/v1/cities?type=guess](http://localhost:8001/v1/cities?type=guess)
+ [http://localhost:3000/v1/cities?type=guess](http://localhost:3000/v1/cities?type=guess)
 
 #### 请求方式: 
 ```
@@ -144,11 +144,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/cities/:id
+http://localhost:3000/v1/cities/:id
 ```
 
 #### 示例：
-[http://localhost:8001/v1/cities/1](http://localhost:8001/v1/cities/1)
+[http://localhost:3000/v1/cities/1](http://localhost:3000/v1/cities/1)
 
 #### 请求方式：
 ```
@@ -180,11 +180,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/pois
+http://localhost:3000/v1/pois
 ```
 
 #### 示例：
-[http://localhost:8001/v1/pois?city_id=1&keyword=迪士尼&type=search](http://localhost:8001/v1/pois?city_id=1&keyword=%E8%BF%AA%E5%A3%AB%E5%B0%BC&type=search)
+[http://localhost:3000/v1/pois?city_id=1&keyword=迪士尼&type=search](http://localhost:3000/v1/pois?city_id=1&keyword=%E8%BF%AA%E5%A3%AB%E5%B0%BC&type=search)
 
 #### 请求方式：
 ```
@@ -225,11 +225,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v2/pois/:geohash
+http://localhost:3000/v2/pois/:geohash
 ```
 
 #### 示例：
-[http://localhost:8001/v2/pois/31.22967,121.4762](http://localhost:8001/v2/pois/31.22967,121.4762)
+[http://localhost:3000/v2/pois/31.22967,121.4762](http://localhost:3000/v2/pois/31.22967,121.4762)
 
 #### 请求方式：
 ```
@@ -259,11 +259,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v2/index_entry
+http://localhost:3000/v2/index_entry
 ```
 
 #### 示例：
-[http://localhost:8001/v2/index_entry](http://localhost:8001/v2/index_entry)
+[http://localhost:3000/v2/index_entry](http://localhost:3000/v2/index_entry)
 
 #### 请求方式：
 ```
@@ -309,11 +309,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/restaurants
+http://localhost:3000/shopping/restaurants
 ```
 
 #### 示例：
-[http://localhost:8001/shopping/restaurants?latitude=31.22967&longitude=121.4762](http://localhost:8001/shopping/restaurants?latitude=31.22967&longitude=121.4762)
+[http://localhost:3000/shopping/restaurants?latitude=31.22967&longitude=121.4762](http://localhost:3000/shopping/restaurants?latitude=31.22967&longitude=121.4762)
 
 #### 请求方式：
 ```
@@ -446,11 +446,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v4/restaurants
+http://localhost:3000/v4/restaurants
 ```
 
 #### 示例：
-[http://localhost:8001/v4/restaurants?geohash=31.22967,121.4762&keyword=肯德基](http://localhost:8001/v4/restaurants?geohash=31.22967,121.4762&keyword=肯德基)
+[http://localhost:3000/v4/restaurants?geohash=31.22967,121.4762&keyword=肯德基](http://localhost:3000/v4/restaurants?geohash=31.22967,121.4762&keyword=肯德基)
 
 #### 请求方式：
 ```
@@ -575,11 +575,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/v2/restaurant/category
+http://localhost:3000/shopping/v2/restaurant/category
 ```
 
 #### 示例：
-[http://localhost:8001/shopping/v2/restaurant/category](http://localhost:8001/shopping/v2/restaurant/category)
+[http://localhost:3000/shopping/v2/restaurant/category](http://localhost:3000/shopping/v2/restaurant/category)
 
 #### 请求方式：
 ```
@@ -647,11 +647,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/v1/restaurants/delivery_modes
+http://localhost:3000/shopping/v1/restaurants/delivery_modes
 ```
 
 #### 示例：
-[http://localhost:8001/shopping/v1/restaurants/delivery_modes](http://localhost:8001/shopping/v1/restaurants/delivery_modes)
+[http://localhost:3000/shopping/v1/restaurants/delivery_modes](http://localhost:3000/shopping/v1/restaurants/delivery_modes)
 
 #### 请求方式：
 ```
@@ -683,11 +683,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/v1/restaurants/activity_attributes
+http://localhost:3000/shopping/v1/restaurants/activity_attributes
 ```
 
 #### 示例：
-[http://localhost:8001/shopping/v1/restaurants/activity_attributes](http://localhost:8001/shopping/v1/restaurants/activity_attributes)
+[http://localhost:3000/shopping/v1/restaurants/activity_attributes](http://localhost:3000/shopping/v1/restaurants/activity_attributes)
 
 #### 请求方式：
 ```
@@ -723,11 +723,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/restaurant/:shopid
+http://localhost:3000/shopping/restaurant/:shopid
 ```
 
 #### 示例：
-[http://localhost:8001/shopping/restaurant/1](http://localhost:8001/shopping/restaurant/1)
+[http://localhost:3000/shopping/restaurant/1](http://localhost:3000/shopping/restaurant/1)
 
 #### 请求方式：
 ```
@@ -849,7 +849,7 @@ GET
 
 #### 请求URL:  
 ```
-http://localhost:8001/v1/addimg/:type
+http://localhost:3000/v1/addimg/:type
 ```
 
 #### 示例：
@@ -871,7 +871,7 @@ POST
 {
   status: 1,
   image_path: '15bfafa418322.jpeg'  
-  // 图片保存至七牛，图片全部地址为， http://localhost:8001/img/15bfafa418322.jpeg
+  // 图片保存至七牛，图片全部地址为， http://localhost:3000/img/15bfafa418322.jpeg
 }
 ```
 
@@ -880,7 +880,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/addshop
+http://localhost:3000/shopping/addshop
 ```
 
 #### 示例：
@@ -932,7 +932,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/addcategory
+http://localhost:3000/shopping/addcategory
 ```
 
 #### 示例：
@@ -964,7 +964,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/addfood
+http://localhost:3000/shopping/addfood
 ```
 
 #### 示例：
@@ -1001,12 +1001,12 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/v2/menu
+http://localhost:3000/shopping/v2/menu
 ```
 
 #### 示例：
 
-[http://localhost:8001/shopping/v2/menu?restaurant_id=1](http://localhost:8001/shopping/v2/menu?restaurant_id=1)
+[http://localhost:3000/shopping/v2/menu?restaurant_id=1](http://localhost:3000/shopping/v2/menu?restaurant_id=1)
 
 
 #### 请求方式：
@@ -1105,12 +1105,12 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/ugc/v2/restaurants/:restaurant_id/ratings
+http://localhost:3000/ugc/v2/restaurants/:restaurant_id/ratings
 ```
 
 #### 示例：
 
-[http://localhost:8001/ugc/v2/restaurants/1/ratings?offset=0&limit=10](http://localhost:8001/ugc/v2/restaurants/1/ratings?offset=0&limit=10)
+[http://localhost:3000/ugc/v2/restaurants/1/ratings?offset=0&limit=10](http://localhost:3000/ugc/v2/restaurants/1/ratings?offset=0&limit=10)
 
 
 #### 请求方式：
@@ -1167,12 +1167,12 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/ugc/v2/restaurants/:restaurant_id/ratings/scores
+http://localhost:3000/ugc/v2/restaurants/:restaurant_id/ratings/scores
 ```
 
 #### 示例：
 
-[http://localhost:8001/ugc/v2/restaurants/1/ratings/scores](http://localhost:8001/ugc/v2/restaurants/1/ratings/scores)
+[http://localhost:3000/ugc/v2/restaurants/1/ratings/scores](http://localhost:3000/ugc/v2/restaurants/1/ratings/scores)
 
 
 #### 请求方式：
@@ -1206,12 +1206,12 @@ service_score: 4.69295
 
 #### 请求URL：
 ```
-http://localhost:8001/ugc/v2/restaurants/:restaurant_id/ratings/tags
+http://localhost:3000/ugc/v2/restaurants/:restaurant_id/ratings/tags
 ```
 
 #### 示例：
 
-[http://localhost:8001/ugc/v2/restaurants/1/ratings/tags](http://localhost:8001/ugc/v2/restaurants/1/ratings/tags)
+[http://localhost:3000/ugc/v2/restaurants/1/ratings/tags](http://localhost:3000/ugc/v2/restaurants/1/ratings/tags)
 
 
 #### 请求方式：
@@ -1245,7 +1245,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/carts/checkout
+http://localhost:3000/v1/carts/checkout
 ```
 
 #### 示例：
@@ -1319,12 +1319,12 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/carts/:cart_id/remarks
+http://localhost:3000/v1/carts/:cart_id/remarks
 ```
 
 #### 示例：
 
-[http://localhost:8001/v1/carts/1/remarks](http://localhost:8001/v1/carts/1/remarks)
+[http://localhost:3000/v1/carts/1/remarks](http://localhost:3000/v1/carts/1/remarks)
 
 
 #### 请求方式：
@@ -1360,12 +1360,12 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/users/:user_id/addresses
+http://localhost:3000/v1/users/:user_id/addresses
 ```
 
 #### 示例：
 
-[http://localhost:8001/v1/users/1/addresses](http://localhost:8001/v1/users/1/addresses)
+[http://localhost:3000/v1/users/1/addresses](http://localhost:3000/v1/users/1/addresses)
 
 
 #### 请求方式：
@@ -1390,7 +1390,7 @@ GET
     address: "桂平路680号33幢",
     phone: "13683220505",
     is_valid: 1,
-    created_at: "2017-03-31T15:10:25+0800",
+    created_at: "2017-03-31T15:10:25+03000,
     phone_bk: "",
     name: "1231",
     st_geohash: "wtw2dfyxb62",
@@ -1412,7 +1412,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/captchas
+http://localhost:3000/v1/captchas
 ```
 
 #### 示例：
@@ -1444,7 +1444,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/user
+http://localhost:3000/v1/user
 ```
 
 #### 示例：
@@ -1490,7 +1490,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v2/login
+http://localhost:3000/v2/login
 ```
 
 #### 示例：
@@ -1540,7 +1540,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:8001/v2/signout
+http://localhost:3000/v2/signout
 ```
 
 #### 示例：
@@ -1572,7 +1572,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v2/changepassword
+http://localhost:3000/v2/changepassword
 ```
 
 #### 示例：
@@ -1608,7 +1608,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/users/:user_id/addresses
+http://localhost:3000/v1/users/:user_id/addresses
 ```
 
 #### 示例：
@@ -1651,7 +1651,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/users/:user_id/addresses/:address_id
+http://localhost:3000/v1/users/:user_id/addresses/:address_id
 ```
 
 #### 示例：
@@ -1684,7 +1684,7 @@ DELETE
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/users/:user_id/carts/:cart_id/orders
+http://localhost:3000/v1/users/:user_id/carts/:cart_id/orders
 ```
 
 #### 示例：
@@ -1725,12 +1725,12 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:8001/bos/v2/users/:user_id/orders
+http://localhost:3000/bos/v2/users/:user_id/orders
 ```
 
 #### 示例：
 
-[http://localhost:8001/bos/v2/users/1/orders?limit=10&offset=0](http://localhost:8001/bos/v2/users/1/orders?limit=10&offset=0)
+[http://localhost:3000/bos/v2/users/1/orders?limit=10&offset=0](http://localhost:3000/bos/v2/users/1/orders?limit=10&offset=0)
 
 
 #### 请求方式：
@@ -1832,12 +1832,12 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/bos/v1/users/:user_id/orders/:order_id/snapshot
+http://localhost:3000/bos/v1/users/:user_id/orders/:order_id/snapshot
 ```
 
 #### 示例：
 
-[http://localhost:8001/bos/v1/users/1/orders/1/snapshot](http://localhost:8001/bos/v1/users/1/orders/1/snapshot)
+[http://localhost:3000/bos/v1/users/1/orders/1/snapshot](http://localhost:3000/bos/v1/users/1/orders/1/snapshot)
 
 
 #### 请求方式：
@@ -1954,12 +1954,12 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v3/profile/explain
+http://localhost:3000/v3/profile/explain
 ```
 
 #### 示例：
 
-[http://localhost:8001/v3/profile/explain](http://localhost:8001/v3/profile/explain)
+[http://localhost:3000/v3/profile/explain](http://localhost:3000/v3/profile/explain)
 
 
 #### 请求方式：
@@ -1986,12 +1986,12 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/promotion/v2/users/:user_id/hongbaos
+http://localhost:3000/promotion/v2/users/:user_id/hongbaos
 ```
 
 #### 示例：
 
-[http://localhost:8001/promotion/v2/users/1/hongbaos?limit=20&offset=0](http://localhost:8001/promotion/v2/users/1/hongbaos?limit=20&offset=0)
+[http://localhost:3000/promotion/v2/users/1/hongbaos?limit=20&offset=0](http://localhost:3000/promotion/v2/users/1/hongbaos?limit=20&offset=0)
 
 
 #### 请求方式：
@@ -2043,12 +2043,12 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/promotion/v2/users/:user_id/expired_hongbaos
+http://localhost:3000/promotion/v2/users/:user_id/expired_hongbaos
 ```
 
 #### 示例：
 
-[http://localhost:8001/promotion/v2/users/1/expired_hongbaos?limit=20&offset=0](http://localhost:8001/promotion/v2/users/1/expired_hongbaos?limit=20&offset=0)
+[http://localhost:3000/promotion/v2/users/1/expired_hongbaos?limit=20&offset=0](http://localhost:3000/promotion/v2/users/1/expired_hongbaos?limit=20&offset=0)
 
 
 #### 请求方式：
@@ -2101,7 +2101,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/users/:user_id/hongbao/exchange
+http://localhost:3000/v1/users/:user_id/hongbao/exchange
 ```
 
 #### 示例：
@@ -2136,7 +2136,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:8001/admin/login
+http://localhost:3000/admin/login
 ```
 
 #### 示例：
@@ -2170,7 +2170,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:8001/admin/singout
+http://localhost:3000/admin/singout
 ```
 
 #### 示例：
@@ -2204,7 +2204,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/admin/info
+http://localhost:3000/admin/info
 ```
 
 #### 示例：
@@ -2244,11 +2244,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/statis/api/:date/count
+http://localhost:3000/statis/api/:date/count
 ```
 
 #### 示例：
-[http://localhost:8001/statis/api/2017-05-29/count](http://localhost:8001/statis/api/2017-05-29/count)
+[http://localhost:3000/statis/api/2017-05-29/count](http://localhost:3000/statis/api/2017-05-29/count)
 
 #### 请求方式：
 ```
@@ -2279,11 +2279,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/statis/api/count
+http://localhost:3000/statis/api/count
 ```
 
 #### 示例：
-[http://localhost:8001/statis/api/count](http://localhost:8001/statis/api/count)
+[http://localhost:3000/statis/api/count](http://localhost:3000/statis/api/count)
 
 #### 请求方式：
 ```
@@ -2313,11 +2313,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/statis/user/:date/count
+http://localhost:3000/statis/user/:date/count
 ```
 
 #### 示例：
-[http://localhost:8001/statis/user/2017-05-29/count](http://localhost:8001/statis/user/2017-05-29/count)
+[http://localhost:3000/statis/user/2017-05-29/count](http://localhost:3000/statis/user/2017-05-29/count)
 
 #### 请求方式：
 ```
@@ -2348,11 +2348,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/users/count
+http://localhost:3000/v1/users/count
 ```
 
 #### 示例：
-[http://localhost:8001/v1/users/count](http://localhost:8001/v1/users/count)
+[http://localhost:3000/v1/users/count](http://localhost:3000/v1/users/count)
 
 #### 请求方式：
 ```
@@ -2383,11 +2383,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/statis/order/:date/count
+http://localhost:3000/statis/order/:date/count
 ```
 
 #### 示例：
-[http://localhost:8001/statis/order/2017-05-29/count](http://localhost:8001/statis/order/2017-05-29/count)
+[http://localhost:3000/statis/order/2017-05-29/count](http://localhost:3000/statis/order/2017-05-29/count)
 
 #### 请求方式：
 ```
@@ -2417,11 +2417,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/bos/orders/count
+http://localhost:3000/bos/orders/count
 ```
 
 #### 示例：
-[http://localhost:8001/bos/orders/count](http://localhost:8001/bos/orders/count)
+[http://localhost:3000/bos/orders/count](http://localhost:3000/bos/orders/count)
 
 
 #### 请求方式：
@@ -2452,11 +2452,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/admin/all
+http://localhost:3000/admin/all
 ```
 
 #### 示例：
-[http://localhost:8001/admin/all?offset=0&limit=20](http://localhost:8001/admin/all?offset=0&limit=20)
+[http://localhost:3000/admin/all?offset=0&limit=20](http://localhost:3000/admin/all?offset=0&limit=20)
 
 #### 请求方式：
 ```
@@ -2500,11 +2500,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/admin/count
+http://localhost:3000/admin/count
 ```
 
 #### 示例：
-[http://localhost:8001/admin/count](http://localhost:8001/admin/count)
+[http://localhost:3000/admin/count](http://localhost:3000/admin/count)
 
 
 #### 请求方式：
@@ -2535,11 +2535,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/getcategory/:restaurant_id
+http://localhost:3000/shopping/getcategory/:restaurant_id
 ```
 
 #### 示例：
-[http://localhost:8001/shopping/getcategory/2](http://localhost:8001/shopping/getcategory/2)
+[http://localhost:3000/shopping/getcategory/2](http://localhost:3000/shopping/getcategory/2)
 
 
 #### 请求方式：
@@ -2581,11 +2581,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/restaurants/count
+http://localhost:3000/shopping/restaurants/count
 ```
 
 #### 示例：
-[http://localhost:8001/shopping/restaurants/count](http://localhost:8001/shopping/restaurants/count)
+[http://localhost:3000/shopping/restaurants/count](http://localhost:3000/shopping/restaurants/count)
 
 
 #### 请求方式：
@@ -2619,7 +2619,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/updateshop
+http://localhost:3000/shopping/updateshop
 ```
 
 #### 示例：
@@ -2659,7 +2659,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/restaurant/:restaurant_id
+http://localhost:3000/shopping/restaurant/:restaurant_id
 ```
 
 #### 示例：
@@ -2696,11 +2696,11 @@ DELETE
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/v2/foods
+http://localhost:3000/shopping/v2/foods
 ```
 
 #### 示例：
-[http://localhost:8001/shopping/v2/foods?offset=0&limit=20&restaurant_id=2](http://localhost:8001/shopping/v2/foods?offset=0&limit=20&restaurant_id=2)
+[http://localhost:3000/shopping/v2/foods?offset=0&limit=20&restaurant_id=2](http://localhost:3000/shopping/v2/foods?offset=0&limit=20&restaurant_id=2)
 
 #### 请求方式：
 ```
@@ -2787,11 +2787,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/v2/foods/count
+http://localhost:3000/shopping/v2/foods/count
 ```
 
 #### 示例：
-[http://localhost:8001/shopping/v2/foods/count](http://localhost:8001/shopping/v2/foods/count)
+[http://localhost:3000/shopping/v2/foods/count](http://localhost:3000/shopping/v2/foods/count)
 
 
 #### 请求方式：
@@ -2823,11 +2823,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/v2/menu/:category_id
+http://localhost:3000/shopping/v2/menu/:category_id
 ```
 
 #### 示例：
-[http://localhost:8001/shopping/v2/menu/1](http://localhost:8001/shopping/v2/menu/1)
+[http://localhost:3000/shopping/v2/menu/1](http://localhost:3000/shopping/v2/menu/1)
 
 
 #### 请求方式：
@@ -2866,7 +2866,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/v2/updatefood
+http://localhost:3000/shopping/v2/updatefood
 ```
 
 #### 示例：
@@ -2905,7 +2905,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:8001/shopping/v2/food/:food_id
+http://localhost:3000/shopping/v2/food/:food_id
 ```
 
 #### 示例：
@@ -2941,11 +2941,11 @@ DELETE
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/users/list
+http://localhost:3000/v1/users/list
 ```
 
 #### 示例：
-[http://localhost:8001/v1/users/list?offset=0&limit=20](http://localhost:8001/v1/users/list?offset=0&limit=20)
+[http://localhost:3000/v1/users/list?offset=0&limit=20](http://localhost:3000/v1/users/list?offset=0&limit=20)
 
 #### 请求方式：
 ```
@@ -3002,11 +3002,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/bos/orders
+http://localhost:3000/bos/orders
 ```
 
 #### 示例：
-[http://localhost:8001/bos/orders?offset=0&limit=20](http://localhost:8001/bos/orders?offset=0&limit=20)
+[http://localhost:3000/bos/orders?offset=0&limit=20](http://localhost:3000/bos/orders?offset=0&limit=20)
 
 #### 请求方式：
 ```
@@ -3036,11 +3036,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/addresse/:address_id
+http://localhost:3000/v1/addresse/:address_id
 ```
 
 #### 示例：
-[http://localhost:8001/v1/addresse/1](http://localhost:8001/v1/addresse/1)
+[http://localhost:3000/v1/addresse/1](http://localhost:3000/v1/addresse/1)
 
 #### 请求方式：
 ```
@@ -3068,11 +3068,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/v1/user/city/count
+http://localhost:3000/v1/user/city/count
 ```
 
 #### 示例：
-[http://localhost:8001/v1/user/city/count](http://localhost:8001/v1/user/city/count)
+[http://localhost:3000/v1/user/city/count](http://localhost:3000/v1/user/city/count)
 
 #### 请求方式：
 ```
@@ -3106,11 +3106,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:8001/statis/admin/:date/count
+http://localhost:3000/statis/admin/:date/count
 ```
 
 #### 示例：
-[http://localhost:8001/statis/admin/2017-05-30/count](http://localhost:8001/statis/admin/2017-05-30/count)
+[http://localhost:3000/statis/admin/2017-05-30/count](http://localhost:3000/statis/admin/2017-05-30/count)
 
 #### 请求方式：
 ```

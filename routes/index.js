@@ -15,7 +15,12 @@ import shopping from './shopping'
 import promotion from './promotion'
 
 export default app => {
-	// app.get('/', (req, res, next) => { });
+	// app.use('/', (req, res, next) => { 
+	// 	logger.info(`query:${JSON.stringify(req.query)}`);
+	// 	logger.info(`body:${JSON.stringify(req.body)}`);
+	// 	logger.info(`params:${JSON.stringify(req.params)}`);
+	// 	logger.info(`cookies:${JSON.stringify(req.cookies)}`);
+	// });
 	app.use('/v1', v1);
 	app.use('/v2', v2);
 	app.use('/v3', v3);

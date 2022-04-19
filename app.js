@@ -10,7 +10,7 @@ import history from 'connect-history-api-fallback';
 import chalk from 'chalk';
 
 import log4js from 'log4js';
-import logMiddleware from './middlewares/log4j.js';
+import { reqMiddleware } from './middlewares/log4j.js';
 import Layout from './util/log4jLayout.js';
 import logConfig from './config/log4j.js';
 
@@ -53,7 +53,7 @@ app.use(session({
 
 // 设置日志中间件
 app.use(async (req, res, next) => {
-    logMiddleware.reqMiddleware(req, res, next, log4js);
+    reqMiddleware(req, res, next, log4js);
 });
 
 // 设置日志的输出格式
@@ -64,10 +64,10 @@ log4js.configure(logConfig);
 
 
 
-app.get('/', function(req, res){
-	const logger = req.logger;
-	logger.info('This will use the default category and go to stdout');
-});
+// app.get('/', function(req, res){
+// 	const logger = req.logger;
+// 	logger.info('This will use the default category and go to stdout');
+// });
 
 // 路由
 router(app);
