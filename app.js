@@ -62,8 +62,6 @@ Layout(log4js);
 import logConfig from './config/log4j.js';
 log4js.configure(logConfig);
 
-const logger = log4js.getLogger();
-logger.all('This will use the default category and go to stdout');
 
 // 路由
 router(app);
@@ -76,7 +74,7 @@ app.listen(process.env.PORT || config.port, () => {
 	console.log(
 		chalk.green(`成功监听端口：${config.port}`)
 	);
-	
+
 	if(process.send) {
 		process.send('ready');
 	}
