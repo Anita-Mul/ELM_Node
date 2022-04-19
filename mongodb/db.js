@@ -25,9 +25,9 @@ db.on('error', function(error) {
 
 db.on('close', function() {
     console.log(
-      chalk.red('数据库断开，重新连接数据库')
+      chalk.red('数据库断开')
     );
-    mongoose.connect(config.url, {server:{auto_reconnect:true}});
+    // mongoose.connect(config.url, {server:{auto_reconnect:true}});
 });
 
 

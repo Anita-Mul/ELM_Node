@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "author": "cangdu <1264889788@qq.com>",
+  "author": "Anita-Mul <2659580957@qq.com>",
   "license": "GPL",
   "private": true,
   "scripts": {
@@ -37,6 +37,8 @@
     "express-winston": "^2.3.0",
     "formidable": "^1.1.1",
     "gm": "^1.23.0",
+    "ioredis": "^5.0.4",
+    "log4js": "^6.4.5",
     "marked": "^0.3.6",
     "moment": "^2.18.1",
     "mongoose": "^4.9.3",
@@ -47,6 +49,7 @@
     "sha1": "^1.1.1",
     "time-formater": "1.0.1",
     "time-stamp": "^2.0.0",
+    "uuid": "^8.3.2",
     "winston": "^2.3.1"
   },
   "devDependencies": {
