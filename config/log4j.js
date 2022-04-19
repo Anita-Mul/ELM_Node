@@ -65,7 +65,20 @@ export default {
         // "mail": {
         //     "type": { configure: robotAppender.wxConfigure },
         //     "layout": { type: 'basic' },
-        // }
+        // },
+        "http": {
+            "type": "dateFile",
+            "filename": "logs/http/elm_http.log",
+            "pattern": "yyyy-MM-dd",
+            "layout": {
+                "type": "json", 
+                "separator": ""
+            },
+            "compress": true,
+            "keepFileExt": true,
+            "fileNameSep": '_',
+            "numBackups": 30,
+        },
     },
     "categories": {
         "default": {
@@ -88,5 +101,11 @@ export default {
             ],
             "level": "error"
         },
+        "http": {
+            "appenders": [
+                "http",
+            ],
+            "level": "all"
+        }
     }
 }

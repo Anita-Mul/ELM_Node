@@ -4,6 +4,7 @@ function Layout(log4js) {
     // config     {"type":"json","separator":","}
     // logEvent   {"startTime":"2022-04-17T05:44:00.179Z","categoryName":"index","data":["返回数据成功,
     //             测试日志等级error"],"level":{"level":40000,"levelStr":"ERROR","colour":"red"},"context":{},"pid":23704}
+    // 当调用日志函数时才会触发回调函数
     log4js.addLayout('json', config => function (logEvent) {
         return JSON.stringify({
             projectName,
