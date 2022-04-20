@@ -1,5 +1,4 @@
-
-// var robotAppender = require('../util/log4jAppender');
+import log4jAppender from '../util/log4jAppender';
 
 
 export default {
@@ -55,17 +54,17 @@ export default {
             "pattern": "yyyy-MM-dd",
             "layout": {
                 "type": "pattern",
-                "pattern": "[%d{ISO8601}][%5p  %5z  %5c][trace  %X{trace}] %m"  // [2022-04-17T13:07:44.949][ INFO  23516  index] 用户进入主页!测试日志等级info
+                "pattern": "[%d{ISO8601}][%5p  %5z  %5c][trace  %X{trace}] %m"  // [2022-04-20T11:50:43.748][ERROR   6948  error][trace  e0c1dbe1-1550-443d-a388-74815134f354] 获取数据失败
             },
             "compress": true,
             "keepFileExt": true,
             "fileNameSep": '_',
             "numBackups": 30,
         },
-        // "mail": {
-        //     "type": { configure: robotAppender.wxConfigure },
-        //     "layout": { type: 'basic' },
-        // },
+        "mail": {
+            "type": { configure: log4jAppender.mailConfigure },
+            "layout": { type: 'basic' },
+        },
         "http": {
             "type": "dateFile",
             "filename": "logs/http/elm_http.log",
@@ -95,9 +94,9 @@ export default {
         },
         "error": {
             "appenders": [
-                "console",
-                "error",
-                // "mail"
+                // "console",
+                // "error",
+                "mail"
             ],
             "level": "error"
         },

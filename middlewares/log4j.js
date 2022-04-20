@@ -31,9 +31,10 @@ async function reqMiddleware (req, res, next, log4js) {
     // 同时附加请求的 path 
     req.logger.addContext('path', req.path);
 
-
+    // 在 req 上挂载错误 logger。
     if (!req.errLogger) req.errLogger = log4js.getLogger('error');
     req.errLogger.addContext('trace', traceId);
+    req.errLogger.addContext('path', req.path);
 
     await next();
 }

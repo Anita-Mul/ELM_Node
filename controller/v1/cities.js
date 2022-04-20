@@ -56,6 +56,7 @@ class CityHandle extends AddressComponent{
 				name: 'ERROR_PARAM_TYPE',
 				message: '参数错误',
 			})
+			
 			return
 		}
 		try{
