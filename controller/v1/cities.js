@@ -16,6 +16,7 @@ class CityHandle extends AddressComponent{
 	async getCity(req, res, next){
 		const type = req.query.type;
 		let cityInfo;
+		console.log(111111111);
 		try{
 			switch (type){
 				case 'guess': 
@@ -29,6 +30,7 @@ class CityHandle extends AddressComponent{
 					cityInfo = await Cities.cityGroup();
 					break;
 				default: 
+					req.logger.error(`参数错误`);
 					res.json({
 						name: 'ERROR_QUERY_TYPE',
 						message: '参数错误',
@@ -37,6 +39,7 @@ class CityHandle extends AddressComponent{
 			}
 			res.send(cityInfo);
 		}catch(err){
+			req.logger.error(`获取数据失败`);
 			res.send({
 				name: 'ERROR_DATA',
 				message: '获取数据失败',
@@ -46,6 +49,7 @@ class CityHandle extends AddressComponent{
 	async getCityById(req, res, next){
 		const cityid = req.params.id;
 		if (isNaN(cityid)) {
+			req.logger.error(`参数错误`);
 			res.json({
 				name: 'ERROR_PARAM_TYPE',
 				message: '参数错误',
@@ -56,6 +60,7 @@ class CityHandle extends AddressComponent{
 			const cityInfo = await Cities.getCityById(cityid);
 			res.send(cityInfo);
 		}catch(err){
+			req.logger.error(`获取数据失败`);
 			res.send({
 				name: 'ERROR_DATA',
 				message: '获取数据失败',
