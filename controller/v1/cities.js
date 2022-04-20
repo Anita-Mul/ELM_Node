@@ -49,6 +49,8 @@ class CityHandle extends AddressComponent{
 	async getCityById(req, res, next){
 		const cityid = req.params.id;
 		if (isNaN(cityid)) {
+			req.errLogger.error(`获取数据失败`);
+
 			req.logger.error(`参数错误`);
 			res.json({
 				name: 'ERROR_PARAM_TYPE',
@@ -61,6 +63,17 @@ class CityHandle extends AddressComponent{
 			res.send(cityInfo);
 		}catch(err){
 			req.logger.error(`获取数据失败`);
+
+			/**
+			 * Logger {
+			 *		category: 'error',
+			 *		context: { trace: '41f801cd-e5fc-4f25-bac0-79ebc99b0aae' },
+			 *		parseCallStack: [Function: defaultParseCallStack]
+			 * }
+			 */
+			console.log(req.errLogger);
+			// [2022-04-20T11:36:24.769][ERROR   6086  error] 获取数据失败
+			req.errLogger.error(`获取数据失败`);
 			res.send({
 				name: 'ERROR_DATA',
 				message: '获取数据失败',

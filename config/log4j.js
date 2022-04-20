@@ -55,7 +55,7 @@ export default {
             "pattern": "yyyy-MM-dd",
             "layout": {
                 "type": "pattern",
-                "pattern": "[%d{ISO8601}][%5p  %5z  %5c] %m"  // [2022-04-17T13:07:44.949][ INFO  23516  index] 用户进入主页!测试日志等级info
+                "pattern": "[%d{ISO8601}][%5p  %5z  %5c][trace  %X{trace}] %m"  // [2022-04-17T13:07:44.949][ INFO  23516  index] 用户进入主页!测试日志等级info
             },
             "compress": true,
             "keepFileExt": true,
