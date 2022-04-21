@@ -1,0 +1,10 @@
+{
+    "appid": "90631",                          
+    "secret": "c0e8dfe72616299629c23a55767f4476ad467816",
+    "logdir": "./logs",
+    "error_log": [
+        "./logs/error/elm_error.log",
+        "./logs/pm2/elm_node/ELMerr.log",
+        "./logs/pm2/mail_node/ELMerr.log"
+    ]
+}

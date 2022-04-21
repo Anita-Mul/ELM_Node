@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name: 'elm_node',
-    script: 'ENABLE_NODE_LOG=YES node index.js',
+    script: 'NODE_LOG_DIR=./logs ENABLE_NODE_LOG=YES sudo node index.js',
     env: {
       NODE_ENV: 'development'
     },
@@ -23,7 +23,7 @@ module.exports = {
     listen_timeout: 10000
   }, {
     name: 'mail_node',
-    script: 'node mailServer/index.js',
+    script: 'sudo node mailServer/index.js',
     env: {
       NODE_ENV: 'development'
     },
