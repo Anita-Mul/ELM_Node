@@ -1,17 +1,13 @@
 import nodemailer from 'nodemailer';
-import path, { dirname, resolve} from 'path';
-import fs from 'fs';
-import ejs from 'ejs';
 
-
-function sendMail() {
-    const template = ejs.compile(fs.readFileSync(path.resolve(__dirname, 'email.ejs'), 'utf8'));
-    const HtmlData = template({
-    title: 'Ejs',
-    desc: '使用Ejs渲染模板',
-    });
-
-
+/**
+ *  data : {
+ *      solvePeople,
+        HtmlData
+        subject
+ *  }
+ */
+function sendMail(data) {
     let transporter = nodemailer.createTransport({
         // host: "smtp.ethereal.email",
         secure: false,                      
@@ -19,17 +15,17 @@ function sendMail() {
         port: 587,                         
         secureConnection: true,             
         auth: {
-        user: '2659580957@qq.com', 
-        pass: 'qhursqlmfxyneace',         
+            user: '2659580957@qq.com', 
+            pass: 'prwawjjrhzapecga',         
         },
     });
 
 
     let mailOptions = {
         from: '<2659580957@qq.com>',            
-        to: "2659580957@qq.com", 
-        subject: "啦啦啦啦啦啦啦啦啦啦啦",           
-        html: HtmlData.toString(),
+        to: data.solvePeople, 
+        subject: data.subject,         
+        html: data.HtmlData.toString(),
 
         date: Date.now(),
     };

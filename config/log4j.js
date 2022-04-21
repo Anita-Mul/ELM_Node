@@ -94,8 +94,8 @@ export default {
         },
         "error": {
             "appenders": [
-                // "console",
-                // "error",
+                "console",
+                "error",
                 "mail"
             ],
             "level": "error"

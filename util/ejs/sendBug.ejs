@@ -1,0 +1,7 @@
+<h1><%= text.title %></h1>
+<p>path: <%= text.path %></p>
+<p>msg:  <%= text.msg %></p>
+<p>trace:<%= text.trace %></p>
+<a href="http://106.15.248.41:3005/solve?trace=<%= trace %>&msgId=<%= msgId %>&who=<%= who %>">我来解决</a>
+<a href="http://106.15.248.41:3005/reject?trace=<%= trace %>&msgId=<%= msgId %>">残忍拒绝</a>
+<a href="http://106.15.248.41:3005/show?who=<%= who %>">查看我还没有解决的bug</a>

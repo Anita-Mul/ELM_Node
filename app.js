@@ -15,6 +15,7 @@ import Layout from './util/log4jLayout.js';
 import logConfig from './config/log4j.js';
 
 // import Statistic from './middlewares/statistic'
+process.setMaxListeners(0)
 
 const app = express();
 

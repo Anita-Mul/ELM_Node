@@ -1,11 +1,14 @@
 import Redis from "ioredis";
 import sendMail from "./sendMail";
+import path, { dirname, resolve} from 'path';
+import fs from 'fs';
+import ejs from 'ejs';
 
 // By default, it will connect to localhost:6379.
 const defaultRedisClient = new Redis();
 
 
-async function sendAlert(title, data, chatid) {
+async function sendAlert(title, data) {
     const msgId = data.msg.length > 100 ? data.msg.slice(0, 100) : data.msg;
     
     // 先判断有没有锁
@@ -43,61 +46,33 @@ async function sendAlert(title, data, chatid) {
     // 否则仅仅是计数加一，注意加过期时间
     await defaultRedisClient.set(msgId, String(counter + 1),  "EX", 1 * 24 * 60 * 60);
 
-    const copyedData = {
-        'env': process.env.NODE_ENV,
-        ...data,
-    };
-
-    let htmlData = `### ${title} \n`;
-    Object.keys(copyedData).forEach((key) => {
-      htmlData += `> **${key}**: <font color="comment">${copyedData[key]}</font> \n\n\n`;
-    });
     
+    var solvePeoples = ['2659580957@qq.com'];
+    var who = parseInt(Math.random()*solvePeoples.length);
+    var solvePeople = solvePeoples[who]; 
+
     // 要发送的数据
     let send = {
-        "name": `reject_${data?data.trace : ''}`,   // 全链路 id，建 bug 单需要，用于到日志系统追查
-        "value": msgId,       // msg 的前 100 字节，是加锁的必须信息，也是建 bug 单的必须字段
-        "text": copyedData,
+        "trace": data ? data.trace : '',            // 全链路 id，建 bug 单需要，用于到日志系统追查
+        "msgId": msgId,                             // msg 的前 100 字节，是加锁的必须信息，也是建 bug 单的必须字段
+        "who": solvePeople,
+        "text": {
+            'title': title,
+            ...data,
+        },
     };
     
-    // 接收到的数据
-    let recv = {
-        "name": `reject_${data?data.trace : ''}`,   // 全链路 id，建 bug 单需要，用于到日志系统追查
-        "value": msgId,       // msg 的前 100 字节，是加锁的必须信息，也是建 bug 单的必须字段
-        "text": copyedData,
+    const template = ejs.compile(fs.readFileSync(path.resolve(__dirname, 'ejs/sendBug.ejs'), 'utf8'));
+
+    const HtmlData = template(send);
+
+    var sendData = {
+        solvePeople,
+        HtmlData,
+        subject: "狗蛋，出 bug 了！别摸鱼啦！"
     };
 
-    const recvLockkey = `${recv.value}_lock`;
-    const [actualName, trace] = recv.name.split('_');
-    // 如果存在 counter，先移除
-    await defaultRedisClient.del(recv.value);
-
-    try {
-      // 接受告警的处理
-      if (actualName === 'accept') {
-        // 加不失效锁
-        await defaultRedisClient.set(lockKey, Name);
-        const now = Date.now();
-        // 这里使用 ORM prisma 往 MYSQL 数据插一条 bug 数据
-        // await prisma.bug_list.create({
-        //   data: {
-        //     assign: Alias,
-        //     trace,
-        //     msgId: Value,
-        //     status: BugStatus.Created,
-        //     updatedAt: now,
-        //     createdAt: now,
-        //   },
-        // });
-      } else {
-        // 拒绝告警的处理
-        // redis 加锁，3天有效期，后面都不在提醒
-        // 如果推送连续三条，用户不处理，加锁一天
-        await defaultRedisClient.set(recvLockkey, 3 * 24 * 60 * 60 * 1000, Name);
-      }
-    } catch (e) {
-      console.error('执行加锁出错', e);
-    }
+    sendMail(sendData);
 }
 
 
@@ -106,12 +81,11 @@ function mailAppender(layout, timezoneOffset) {
         if(loggingEvent.level.level >= 40000) {
             var log = layout(loggingEvent, timezoneOffset);
 
-            // sendAlert(loggingEvent.data[0], {                         // title 就是 req.errLogger.error(`获取数据失败`); 中的 `获取数据失败`
-            //     path: loggingEvent.context.path || '',                // path
-            //     msg: log || '',                                       // msg
-            //     trace: loggingEvent.context.trace || '',              // trace_id
-            // });
-            sendMail();
+            sendAlert(loggingEvent.data[0], {                         // title 就是 req.errLogger.error(`获取数据失败`); 中的 `获取数据失败`
+                path: loggingEvent.context.path || '',                // path
+                msg: log || '',                                       // msg
+                trace: loggingEvent.context.trace || '',              // trace_id
+            });
 
             return true;
         }
