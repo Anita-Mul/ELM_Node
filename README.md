@@ -5,7 +5,7 @@
 
 ## 技术栈
 
-nodejs + express + mongodb + mongoose + log4j + redis + nodeMailer + es6/7
+nodejs + express + mongodb + mongoose + log4j + redis + nodeMailer + ejs + es6/7 + pm2
 
 
 ## 项目运行
@@ -19,7 +19,7 @@ nodejs + express + mongodb + mongoose + log4j + redis + nodeMailer + es6/7
 ```
 git clone https://github.com/bailicangdu/node-elm  
 
-cd node-elm
+cd ELM_Node
 
 npm install 或 yarn(推荐)
 
