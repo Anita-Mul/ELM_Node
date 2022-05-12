@@ -8,6 +8,11 @@ import BaseComponent from './baseComponent'
 class AddressComponent extends BaseComponent {
 	constructor(){
 		super();
+		this.tencentkey = 'RLHBZ-WMPRP-Q3JDS-V2IQA-JNRFH-EJBHL';
+		this.tencentkey2 = 'RRXBZ-WC6KF-ZQSJT-N2QU7-T5QIT-6KF5X';
+		this.tencentkey3 = 'OHTBZ-7IFRG-JG2QF-IHFUK-XTTK6-VXFBN';
+		this.tencentkey4 = 'Z2BBZ-QBSKJ-DFUFG-FDGT3-4JRYV-JKF5O';
+	
 		// 腾讯 key
 		this.tencentkey = 'RLHBZ-WMPRP-Q3JDS-V2IQA-JNRFH-EJBHL';
 		this.tencentkey2 = 'RRXBZ-WC6KF-ZQSJT-N2QU7-T5QIT-6KF5X';
@@ -15,8 +20,9 @@ class AddressComponent extends BaseComponent {
 		this.tencentkey4 = 'Z2BBZ-QBSKJ-DFUFG-FDGT3-4JRYV-JKF5O';
 		
 		// 百度 ak
-		// 备用 YtpMLPoTaVC4BFvndbMufujD3SGI1BkV
-		this.baidukey = 'fjke3YUipM9N64GdOIh1DNeK2APO2WcT'; 
+		// 备用 
+		this.baiduKey = 'fjke3YUipM9N64GdOIh1DNeK2APO2WcT';
+		// this.baidukey = 'YtpMLPoTaVC4BFvndbMufujD3SGI1BkV'; 
 	}
 
 	//获取定位地址
@@ -89,7 +95,7 @@ class AddressComponent extends BaseComponent {
 	async searchPlace(keyword, cityName, type = 'search'){
 		try{
 			const resObj = await this.fetch('http://apis.map.qq.com/ws/place/v1/search', {
-				key: this.tencentkey,
+				key: this.tencentkey4,
 				keyword: encodeURIComponent(keyword),						 // 搜索关键字
 				boundary: 'region(' + encodeURIComponent(cityName) + ',0)',  // 搜索城市名称，0 标识仅在当前城市搜索
 				page_size: 10,
@@ -114,6 +120,7 @@ class AddressComponent extends BaseComponent {
 				origins: from,
 				destinations: to,
 			})
+		
 			// if(res.status !== 0){
 			// 	res = await this.fetch('http://api.map.baidu.com/routematrix/v2/driving', {
 			// 		ak: this.baidukey2,

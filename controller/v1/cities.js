@@ -16,7 +16,7 @@ class CityHandle extends AddressComponent{
 	async getCity(req, res, next){
 		const type = req.query.type;
 		let cityInfo;
-		console.log(111111111);
+
 		try{
 			switch (type){
 				case 'guess': 

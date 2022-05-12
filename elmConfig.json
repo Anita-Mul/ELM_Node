@@ -1,10 +1,13 @@
 {
-    "appid": "90631",                          
-    "secret": "c0e8dfe72616299629c23a55767f4476ad467816",
-    "logdir": "./logs",
+    "appid": "90695",                          
+    "secret": "50a39085ac56f7ce52aa23afa067ac973fd908a6",
+    "logdir": "/myproject/real_project/ELM_Node/logs",
     "error_log": [
-        "./logs/error/elm_error.log",
-        "./logs/pm2/elm_node/ELMerr.log",
-        "./logs/pm2/mail_node/ELMerr.log"
+        "/myproject/real_project/ELM_Node/logs/error/elm_error.log",
+        "/myproject/real_project/ELM_Node/logs/pm2/elm_node/ELMerr.log",
+        "/myproject/real_project/ELM_Node/logs/pm2/mail_node/ELMerr.log"
+    ],
+    "packages": [
+        "/myproject/real_project/ELM_Node/package.json"
     ]
 }

@@ -58,7 +58,7 @@ app.get('/reject', async function(req, res){
         // 如果推送连续三条，用户不处理，加锁一天
         await defaultRedisClient.set(lockKey, trace ? trace :'',  "EX", 1 * 24 * 60 * 60);
     } catch (e) {
-      console.error('执行加锁出错', e);
+        console.error('执行加锁出错', e);
     }
 
     res.end('You are a lazy person, I hate you!');

@@ -217,7 +217,7 @@ class Shop extends AddressComponent{
 			support_ids = [],
 			restaurant_category_ids = [],
 		} = req.query;
-
+		
 		try{
 			if (!latitude) {
 				throw new Error('latitude参数错误')
@@ -263,6 +263,7 @@ class Shop extends AddressComponent{
 					break;
 			}
 		}
+
 		//查找配送方式
 		if (delivery_mode.length) {
 			delivery_mode.forEach(item => {
@@ -271,6 +272,7 @@ class Shop extends AddressComponent{
 				}
 			})
 		}
+
 		//查找活动支持方式
 		if (support_ids.length) {
 			const filterArr = []; 
@@ -287,18 +289,23 @@ class Shop extends AddressComponent{
 			}
 		}
 
+		console.log(ShopModel.find({}).lean());
 		const restaurants = await ShopModel.find(filter, '-_id').sort(sortBy).limit(Number(limit)).skip(Number(offset))
+		console.log(restaurants);
 		const from = latitude + ',' + longitude;
 		let to = '';
+
 		//获取百度地图测局所需经度纬度
 		restaurants.forEach((item, index) => {
 			const slpitStr = (index == restaurants.length -1) ? '' : '|';
 			to += item.latitude + ',' + item.longitude + slpitStr;
 		})
+		
 		try{
 			if (restaurants.length) {
 				//获取距离信息，并合并到数据中
 				const distance_duration = await this.getDistance(from, to)
+				console.log(distance_duration);
 				restaurants.map((item, index) => {
 					return Object.assign(item, distance_duration[index])
 				})
@@ -310,6 +317,7 @@ class Shop extends AddressComponent{
 				return Object.assign(item, {distance: '10公里', order_lead_time: '40分钟'})
 			})
 		}
+
 		try{
 			res.send(restaurants)
 		}catch(err){

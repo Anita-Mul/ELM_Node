@@ -1,7 +1,4 @@
 # About
-
-因为前端项目是根据饿了么官网接口写的，所以后台系统也保持了和官网一致的API接口。
-
 整个项目分为两部分：前台项目接口、后台管理接口，共60多个。涉及登陆、注册、添加商品、商品展示、筛选排序、购物车、下单、用户中心等，构成一个完整的流程。
 
 
@@ -27,14 +24,15 @@ cd node-elm
 
 npm install 或 yarn(推荐)
 
+node mailServer/index.js
 npm run dev
 
 访问: http://localhost:3000
-
+阿里云地址: http://elm_node.anitamul.club
 ```
 
 ## API接口文档
-
+#### 前台接口
 [1、获取城市列表](#1获取城市列表)<br/>
 [2、获取所选城市信息](#2获取所选城市信息)<br/>
 [3、搜索地址](#3搜索地址)<br/>
@@ -71,6 +69,7 @@ npm run dev
 [34、可用红包](#34可用红包)<br/>
 [35、过期红包](#35过期红包)<br/>
 [36、兑换红包](#36兑换红包)<br/>
+#### 后台接口
 [37、管理员登录](#37管理员登录)<br/>
 [38、管理员退出登录](#38管理员退出登录)<br/>
 [39、管理员信息](#39管理员信息)<br/>
@@ -107,11 +106,11 @@ npm run dev
 
 #### 请求URL:  
 ```
-http://localhost:3000/v1/cities
+http://elm_node.anitamul.club/v1/cities
 ```
 
 #### 示例：
- [http://localhost:3000/v1/cities?type=guess](http://localhost:3000/v1/cities?type=guess)
+ [http://elm_node.anitamul.club/v1/cities?type=guess](http://elm_node.anitamul.club/v1/cities?type=guess)
 
 #### 请求方式: 
 ```
@@ -144,11 +143,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/cities/:id
+http://elm_node.anitamul.club/v1/cities/:id
 ```
 
 #### 示例：
-[http://localhost:3000/v1/cities/1](http://localhost:3000/v1/cities/1)
+[http://elm_node.anitamul.club/v1/cities/1](http://elm_node.anitamul.club/v1/cities/1)
 
 #### 请求方式：
 ```
@@ -180,11 +179,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/pois
+http://elm_node.anitamul.club/v1/pois
 ```
 
 #### 示例：
-[http://localhost:3000/v1/pois?city_id=1&keyword=迪士尼&type=search](http://localhost:3000/v1/pois?city_id=1&keyword=%E8%BF%AA%E5%A3%AB%E5%B0%BC&type=search)
+[http://elm_node.anitamul.club/v1/pois?city_id=1&keyword=迪士尼&type=search](http://elm_node.anitamul.club/v1/pois?city_id=1&keyword=%E8%BF%AA%E5%A3%AB%E5%B0%BC&type=search)
 
 #### 请求方式：
 ```
@@ -225,11 +224,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v2/pois/:geohash
+http://elm_node.anitamul.club/v2/pois/:geohash
 ```
 
 #### 示例：
-[http://localhost:3000/v2/pois/31.22967,121.4762](http://localhost:3000/v2/pois/31.22967,121.4762)
+[http://elm_node.anitamul.club/v2/pois/31.22967,121.4762](http://elm_node.anitamul.club/v2/pois/31.22967,121.4762)
 
 #### 请求方式：
 ```
@@ -259,11 +258,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v2/index_entry
+http://elm_node.anitamul.club/v2/index_entry
 ```
 
 #### 示例：
-[http://localhost:3000/v2/index_entry](http://localhost:3000/v2/index_entry)
+[http://elm_node.anitamul.club/v2/index_entry](http://elm_node.anitamul.club/v2/index_entry)
 
 #### 请求方式：
 ```
@@ -309,11 +308,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/restaurants
+http://elm_node.anitamul.club/shopping/restaurants
 ```
 
 #### 示例：
-[http://localhost:3000/shopping/restaurants?latitude=31.22967&longitude=121.4762](http://localhost:3000/shopping/restaurants?latitude=31.22967&longitude=121.4762)
+[http://elm_node.anitamul.club/shopping/restaurants?latitude=31.22967&longitude=121.4762](http://elm_node.anitamul.club/shopping/restaurants?latitude=31.22967&longitude=121.4762)
 
 #### 请求方式：
 ```
@@ -446,11 +445,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v4/restaurants
+http://elm_node.anitamul.club/v4/restaurants
 ```
 
 #### 示例：
-[http://localhost:3000/v4/restaurants?geohash=31.22967,121.4762&keyword=肯德基](http://localhost:3000/v4/restaurants?geohash=31.22967,121.4762&keyword=肯德基)
+[http://elm_node.anitamul.club/v4/restaurants?geohash=31.22967,121.4762&keyword=肯德基](http://elm_node.anitamul.club/v4/restaurants?geohash=31.22967,121.4762&keyword=肯德基)
 
 #### 请求方式：
 ```
@@ -575,11 +574,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/v2/restaurant/category
+http://elm_node.anitamul.club/shopping/v2/restaurant/category
 ```
 
 #### 示例：
-[http://localhost:3000/shopping/v2/restaurant/category](http://localhost:3000/shopping/v2/restaurant/category)
+[http://elm_node.anitamul.club/shopping/v2/restaurant/category](http://elm_node.anitamul.club/shopping/v2/restaurant/category)
 
 #### 请求方式：
 ```
@@ -647,11 +646,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/v1/restaurants/delivery_modes
+http://elm_node.anitamul.club/shopping/v1/restaurants/delivery_modes
 ```
 
 #### 示例：
-[http://localhost:3000/shopping/v1/restaurants/delivery_modes](http://localhost:3000/shopping/v1/restaurants/delivery_modes)
+[http://elm_node.anitamul.club/shopping/v1/restaurants/delivery_modes](http://elm_node.anitamul.club/shopping/v1/restaurants/delivery_modes)
 
 #### 请求方式：
 ```
@@ -683,11 +682,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/v1/restaurants/activity_attributes
+http://elm_node.anitamul.club/shopping/v1/restaurants/activity_attributes
 ```
 
 #### 示例：
-[http://localhost:3000/shopping/v1/restaurants/activity_attributes](http://localhost:3000/shopping/v1/restaurants/activity_attributes)
+[http://elm_node.anitamul.club/shopping/v1/restaurants/activity_attributes](http://elm_node.anitamul.club/shopping/v1/restaurants/activity_attributes)
 
 #### 请求方式：
 ```
@@ -723,11 +722,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/restaurant/:shopid
+http://elm_node.anitamul.club/shopping/restaurant/:shopid
 ```
 
 #### 示例：
-[http://localhost:3000/shopping/restaurant/1](http://localhost:3000/shopping/restaurant/1)
+[http://elm_node.anitamul.club/shopping/restaurant/1](http://elm_node.anitamul.club/shopping/restaurant/1)
 
 #### 请求方式：
 ```
@@ -849,7 +848,7 @@ GET
 
 #### 请求URL:  
 ```
-http://localhost:3000/v1/addimg/:type
+http://elm_node.anitamul.club/v1/addimg/:type
 ```
 
 #### 示例：
@@ -871,7 +870,7 @@ POST
 {
   status: 1,
   image_path: '15bfafa418322.jpeg'  
-  // 图片保存至七牛，图片全部地址为， http://localhost:3000/img/15bfafa418322.jpeg
+  // 图片保存至七牛，图片全部地址为， http://elm_node.anitamul.club/img/15bfafa418322.jpeg
 }
 ```
 
@@ -880,7 +879,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/addshop
+http://elm_node.anitamul.club/shopping/addshop
 ```
 
 #### 示例：
@@ -932,7 +931,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/addcategory
+http://elm_node.anitamul.club/shopping/addcategory
 ```
 
 #### 示例：
@@ -964,7 +963,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/addfood
+http://elm_node.anitamul.club/shopping/addfood
 ```
 
 #### 示例：
@@ -1001,12 +1000,12 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/v2/menu
+http://elm_node.anitamul.club/shopping/v2/menu
 ```
 
 #### 示例：
 
-[http://localhost:3000/shopping/v2/menu?restaurant_id=1](http://localhost:3000/shopping/v2/menu?restaurant_id=1)
+[http://elm_node.anitamul.club/shopping/v2/menu?restaurant_id=1](http://elm_node.anitamul.club/shopping/v2/menu?restaurant_id=1)
 
 
 #### 请求方式：
@@ -1105,12 +1104,12 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/ugc/v2/restaurants/:restaurant_id/ratings
+http://elm_node.anitamul.club/ugc/v2/restaurants/:restaurant_id/ratings
 ```
 
 #### 示例：
 
-[http://localhost:3000/ugc/v2/restaurants/1/ratings?offset=0&limit=10](http://localhost:3000/ugc/v2/restaurants/1/ratings?offset=0&limit=10)
+[http://elm_node.anitamul.club/ugc/v2/restaurants/1/ratings?offset=0&limit=10](http://elm_node.anitamul.club/ugc/v2/restaurants/1/ratings?offset=0&limit=10)
 
 
 #### 请求方式：
@@ -1167,12 +1166,12 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/ugc/v2/restaurants/:restaurant_id/ratings/scores
+http://elm_node.anitamul.club/ugc/v2/restaurants/:restaurant_id/ratings/scores
 ```
 
 #### 示例：
 
-[http://localhost:3000/ugc/v2/restaurants/1/ratings/scores](http://localhost:3000/ugc/v2/restaurants/1/ratings/scores)
+[http://elm_node.anitamul.club/ugc/v2/restaurants/1/ratings/scores](http://elm_node.anitamul.club/ugc/v2/restaurants/1/ratings/scores)
 
 
 #### 请求方式：
@@ -1206,12 +1205,12 @@ service_score: 4.69295
 
 #### 请求URL：
 ```
-http://localhost:3000/ugc/v2/restaurants/:restaurant_id/ratings/tags
+http://elm_node.anitamul.club/ugc/v2/restaurants/:restaurant_id/ratings/tags
 ```
 
 #### 示例：
 
-[http://localhost:3000/ugc/v2/restaurants/1/ratings/tags](http://localhost:3000/ugc/v2/restaurants/1/ratings/tags)
+[http://elm_node.anitamul.club/ugc/v2/restaurants/1/ratings/tags](http://elm_node.anitamul.club/ugc/v2/restaurants/1/ratings/tags)
 
 
 #### 请求方式：
@@ -1245,7 +1244,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/carts/checkout
+http://elm_node.anitamul.club/v1/carts/checkout
 ```
 
 #### 示例：
@@ -1319,12 +1318,12 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/carts/:cart_id/remarks
+http://elm_node.anitamul.club/v1/carts/:cart_id/remarks
 ```
 
 #### 示例：
 
-[http://localhost:3000/v1/carts/1/remarks](http://localhost:3000/v1/carts/1/remarks)
+[http://elm_node.anitamul.club/v1/carts/1/remarks](http://elm_node.anitamul.club/v1/carts/1/remarks)
 
 
 #### 请求方式：
@@ -1360,12 +1359,12 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/users/:user_id/addresses
+http://elm_node.anitamul.club/v1/users/:user_id/addresses
 ```
 
 #### 示例：
 
-[http://localhost:3000/v1/users/1/addresses](http://localhost:3000/v1/users/1/addresses)
+[http://elm_node.anitamul.club/v1/users/1/addresses](http://elm_node.anitamul.club/v1/users/1/addresses)
 
 
 #### 请求方式：
@@ -1412,7 +1411,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/captchas
+http://elm_node.anitamul.club/v1/captchas
 ```
 
 #### 示例：
@@ -1444,7 +1443,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/user
+http://elm_node.anitamul.club/v1/user
 ```
 
 #### 示例：
@@ -1490,7 +1489,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v2/login
+http://elm_node.anitamul.club/v2/login
 ```
 
 #### 示例：
@@ -1540,7 +1539,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:3000/v2/signout
+http://elm_node.anitamul.club/v2/signout
 ```
 
 #### 示例：
@@ -1572,7 +1571,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v2/changepassword
+http://elm_node.anitamul.club/v2/changepassword
 ```
 
 #### 示例：
@@ -1608,7 +1607,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/users/:user_id/addresses
+http://elm_node.anitamul.club/v1/users/:user_id/addresses
 ```
 
 #### 示例：
@@ -1651,7 +1650,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/users/:user_id/addresses/:address_id
+http://elm_node.anitamul.club/v1/users/:user_id/addresses/:address_id
 ```
 
 #### 示例：
@@ -1684,7 +1683,7 @@ DELETE
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/users/:user_id/carts/:cart_id/orders
+http://elm_node.anitamul.club/v1/users/:user_id/carts/:cart_id/orders
 ```
 
 #### 示例：
@@ -1725,12 +1724,12 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:3000/bos/v2/users/:user_id/orders
+http://elm_node.anitamul.club/bos/v2/users/:user_id/orders
 ```
 
 #### 示例：
 
-[http://localhost:3000/bos/v2/users/1/orders?limit=10&offset=0](http://localhost:3000/bos/v2/users/1/orders?limit=10&offset=0)
+[http://elm_node.anitamul.club/bos/v2/users/1/orders?limit=10&offset=0](http://elm_node.anitamul.club/bos/v2/users/1/orders?limit=10&offset=0)
 
 
 #### 请求方式：
@@ -1832,12 +1831,12 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/bos/v1/users/:user_id/orders/:order_id/snapshot
+http://elm_node.anitamul.club/bos/v1/users/:user_id/orders/:order_id/snapshot
 ```
 
 #### 示例：
 
-[http://localhost:3000/bos/v1/users/1/orders/1/snapshot](http://localhost:3000/bos/v1/users/1/orders/1/snapshot)
+[http://elm_node.anitamul.club/bos/v1/users/1/orders/1/snapshot](http://elm_node.anitamul.club/bos/v1/users/1/orders/1/snapshot)
 
 
 #### 请求方式：
@@ -1954,12 +1953,12 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v3/profile/explain
+http://elm_node.anitamul.club/v3/profile/explain
 ```
 
 #### 示例：
 
-[http://localhost:3000/v3/profile/explain](http://localhost:3000/v3/profile/explain)
+[http://elm_node.anitamul.club/v3/profile/explain](http://elm_node.anitamul.club/v3/profile/explain)
 
 
 #### 请求方式：
@@ -1986,12 +1985,12 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/promotion/v2/users/:user_id/hongbaos
+http://elm_node.anitamul.club/promotion/v2/users/:user_id/hongbaos
 ```
 
 #### 示例：
 
-[http://localhost:3000/promotion/v2/users/1/hongbaos?limit=20&offset=0](http://localhost:3000/promotion/v2/users/1/hongbaos?limit=20&offset=0)
+[http://elm_node.anitamul.club/promotion/v2/users/1/hongbaos?limit=20&offset=0](http://elm_node.anitamul.club/promotion/v2/users/1/hongbaos?limit=20&offset=0)
 
 
 #### 请求方式：
@@ -2043,12 +2042,12 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/promotion/v2/users/:user_id/expired_hongbaos
+http://elm_node.anitamul.club/promotion/v2/users/:user_id/expired_hongbaos
 ```
 
 #### 示例：
 
-[http://localhost:3000/promotion/v2/users/1/expired_hongbaos?limit=20&offset=0](http://localhost:3000/promotion/v2/users/1/expired_hongbaos?limit=20&offset=0)
+[http://elm_node.anitamul.club/promotion/v2/users/1/expired_hongbaos?limit=20&offset=0](http://elm_node.anitamul.club/promotion/v2/users/1/expired_hongbaos?limit=20&offset=0)
 
 
 #### 请求方式：
@@ -2101,7 +2100,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/users/:user_id/hongbao/exchange
+http://elm_node.anitamul.club/v1/users/:user_id/hongbao/exchange
 ```
 
 #### 示例：
@@ -2136,7 +2135,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:3000/admin/login
+http://elm_node.anitamul.club/admin/login
 ```
 
 #### 示例：
@@ -2170,7 +2169,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:3000/admin/singout
+http://elm_node.anitamul.club/admin/singout
 ```
 
 #### 示例：
@@ -2204,7 +2203,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/admin/info
+http://elm_node.anitamul.club/admin/info
 ```
 
 #### 示例：
@@ -2244,11 +2243,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/statis/api/:date/count
+http://elm_node.anitamul.club/statis/api/:date/count
 ```
 
 #### 示例：
-[http://localhost:3000/statis/api/2017-05-29/count](http://localhost:3000/statis/api/2017-05-29/count)
+[http://elm_node.anitamul.club/statis/api/2017-05-29/count](http://elm_node.anitamul.club/statis/api/2017-05-29/count)
 
 #### 请求方式：
 ```
@@ -2279,11 +2278,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/statis/api/count
+http://elm_node.anitamul.club/statis/api/count
 ```
 
 #### 示例：
-[http://localhost:3000/statis/api/count](http://localhost:3000/statis/api/count)
+[http://elm_node.anitamul.club/statis/api/count](http://elm_node.anitamul.club/statis/api/count)
 
 #### 请求方式：
 ```
@@ -2313,11 +2312,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/statis/user/:date/count
+http://elm_node.anitamul.club/statis/user/:date/count
 ```
 
 #### 示例：
-[http://localhost:3000/statis/user/2017-05-29/count](http://localhost:3000/statis/user/2017-05-29/count)
+[http://elm_node.anitamul.club/statis/user/2017-05-29/count](http://elm_node.anitamul.club/statis/user/2017-05-29/count)
 
 #### 请求方式：
 ```
@@ -2348,11 +2347,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/users/count
+http://elm_node.anitamul.club/v1/users/count
 ```
 
 #### 示例：
-[http://localhost:3000/v1/users/count](http://localhost:3000/v1/users/count)
+[http://elm_node.anitamul.club/v1/users/count](http://elm_node.anitamul.club/v1/users/count)
 
 #### 请求方式：
 ```
@@ -2383,11 +2382,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/statis/order/:date/count
+http://elm_node.anitamul.club/statis/order/:date/count
 ```
 
 #### 示例：
-[http://localhost:3000/statis/order/2017-05-29/count](http://localhost:3000/statis/order/2017-05-29/count)
+[http://elm_node.anitamul.club/statis/order/2017-05-29/count](http://elm_node.anitamul.club/statis/order/2017-05-29/count)
 
 #### 请求方式：
 ```
@@ -2417,11 +2416,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/bos/orders/count
+http://elm_node.anitamul.club/bos/orders/count
 ```
 
 #### 示例：
-[http://localhost:3000/bos/orders/count](http://localhost:3000/bos/orders/count)
+[http://elm_node.anitamul.club/bos/orders/count](http://elm_node.anitamul.club/bos/orders/count)
 
 
 #### 请求方式：
@@ -2452,11 +2451,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/admin/all
+http://elm_node.anitamul.club/admin/all
 ```
 
 #### 示例：
-[http://localhost:3000/admin/all?offset=0&limit=20](http://localhost:3000/admin/all?offset=0&limit=20)
+[http://elm_node.anitamul.club/admin/all?offset=0&limit=20](http://elm_node.anitamul.club/admin/all?offset=0&limit=20)
 
 #### 请求方式：
 ```
@@ -2500,11 +2499,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/admin/count
+http://elm_node.anitamul.club/admin/count
 ```
 
 #### 示例：
-[http://localhost:3000/admin/count](http://localhost:3000/admin/count)
+[http://elm_node.anitamul.club/admin/count](http://elm_node.anitamul.club/admin/count)
 
 
 #### 请求方式：
@@ -2535,11 +2534,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/getcategory/:restaurant_id
+http://elm_node.anitamul.club/shopping/getcategory/:restaurant_id
 ```
 
 #### 示例：
-[http://localhost:3000/shopping/getcategory/2](http://localhost:3000/shopping/getcategory/2)
+[http://elm_node.anitamul.club/shopping/getcategory/2](http://elm_node.anitamul.club/shopping/getcategory/2)
 
 
 #### 请求方式：
@@ -2581,11 +2580,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/restaurants/count
+http://elm_node.anitamul.club/shopping/restaurants/count
 ```
 
 #### 示例：
-[http://localhost:3000/shopping/restaurants/count](http://localhost:3000/shopping/restaurants/count)
+[http://elm_node.anitamul.club/shopping/restaurants/count](http://elm_node.anitamul.club/shopping/restaurants/count)
 
 
 #### 请求方式：
@@ -2619,7 +2618,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/updateshop
+http://elm_node.anitamul.club/shopping/updateshop
 ```
 
 #### 示例：
@@ -2659,7 +2658,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/restaurant/:restaurant_id
+http://elm_node.anitamul.club/shopping/restaurant/:restaurant_id
 ```
 
 #### 示例：
@@ -2696,11 +2695,11 @@ DELETE
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/v2/foods
+http://elm_node.anitamul.club/shopping/v2/foods
 ```
 
 #### 示例：
-[http://localhost:3000/shopping/v2/foods?offset=0&limit=20&restaurant_id=2](http://localhost:3000/shopping/v2/foods?offset=0&limit=20&restaurant_id=2)
+[http://elm_node.anitamul.club/shopping/v2/foods?offset=0&limit=20&restaurant_id=2](http://elm_node.anitamul.club/shopping/v2/foods?offset=0&limit=20&restaurant_id=2)
 
 #### 请求方式：
 ```
@@ -2787,11 +2786,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/v2/foods/count
+http://elm_node.anitamul.club/shopping/v2/foods/count
 ```
 
 #### 示例：
-[http://localhost:3000/shopping/v2/foods/count](http://localhost:3000/shopping/v2/foods/count)
+[http://elm_node.anitamul.club/shopping/v2/foods/count](http://elm_node.anitamul.club/shopping/v2/foods/count)
 
 
 #### 请求方式：
@@ -2823,11 +2822,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/v2/menu/:category_id
+http://elm_node.anitamul.club/shopping/v2/menu/:category_id
 ```
 
 #### 示例：
-[http://localhost:3000/shopping/v2/menu/1](http://localhost:3000/shopping/v2/menu/1)
+[http://elm_node.anitamul.club/shopping/v2/menu/1](http://elm_node.anitamul.club/shopping/v2/menu/1)
 
 
 #### 请求方式：
@@ -2866,7 +2865,7 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/v2/updatefood
+http://elm_node.anitamul.club/shopping/v2/updatefood
 ```
 
 #### 示例：
@@ -2905,7 +2904,7 @@ POST
 
 #### 请求URL：
 ```
-http://localhost:3000/shopping/v2/food/:food_id
+http://elm_node.anitamul.club/shopping/v2/food/:food_id
 ```
 
 #### 示例：
@@ -2941,11 +2940,11 @@ DELETE
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/users/list
+http://elm_node.anitamul.club/v1/users/list
 ```
 
 #### 示例：
-[http://localhost:3000/v1/users/list?offset=0&limit=20](http://localhost:3000/v1/users/list?offset=0&limit=20)
+[http://elm_node.anitamul.club/v1/users/list?offset=0&limit=20](http://elm_node.anitamul.club/v1/users/list?offset=0&limit=20)
 
 #### 请求方式：
 ```
@@ -3002,11 +3001,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/bos/orders
+http://elm_node.anitamul.club/bos/orders
 ```
 
 #### 示例：
-[http://localhost:3000/bos/orders?offset=0&limit=20](http://localhost:3000/bos/orders?offset=0&limit=20)
+[http://elm_node.anitamul.club/bos/orders?offset=0&limit=20](http://elm_node.anitamul.club/bos/orders?offset=0&limit=20)
 
 #### 请求方式：
 ```
@@ -3036,11 +3035,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/addresse/:address_id
+http://elm_node.anitamul.club/v1/addresse/:address_id
 ```
 
 #### 示例：
-[http://localhost:3000/v1/addresse/1](http://localhost:3000/v1/addresse/1)
+[http://elm_node.anitamul.club/v1/addresse/1](http://elm_node.anitamul.club/v1/addresse/1)
 
 #### 请求方式：
 ```
@@ -3068,11 +3067,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/v1/user/city/count
+http://elm_node.anitamul.club/v1/user/city/count
 ```
 
 #### 示例：
-[http://localhost:3000/v1/user/city/count](http://localhost:3000/v1/user/city/count)
+[http://elm_node.anitamul.club/v1/user/city/count](http://elm_node.anitamul.club/v1/user/city/count)
 
 #### 请求方式：
 ```
@@ -3106,11 +3105,11 @@ GET
 
 #### 请求URL：
 ```
-http://localhost:3000/statis/admin/:date/count
+http://elm_node.anitamul.club/statis/admin/:date/count
 ```
 
 #### 示例：
-[http://localhost:3000/statis/admin/2017-05-30/count](http://localhost:3000/statis/admin/2017-05-30/count)
+[http://elm_node.anitamul.club/statis/admin/2017-05-30/count](http://elm_node.anitamul.club/statis/admin/2017-05-30/count)
 
 #### 请求方式：
 ```

@@ -36,8 +36,8 @@ app.all('*', (req, res, next) => {
 	}
 });
 
-// app.use(Statistic.apiRecord)
 
+// app.use(Statistic.apiRecord)
 const MongoStore = connectMongo(session);
 app.use(cookieParser());
 app.use(session({

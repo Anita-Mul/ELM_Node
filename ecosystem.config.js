@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name: 'elm_node',
-    script: 'NODE_LOG_DIR=./logs ENABLE_NODE_LOG=YES sudo node index.js',
+    script: 'NODE_LOG_DIR=/myproject/real_project/ELM_Node/logs ENABLE_NODE_LOG=YES sudo npm run dev',
     env: {
       NODE_ENV: 'development'
     },
