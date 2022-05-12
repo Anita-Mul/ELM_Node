@@ -5,7 +5,7 @@
 
 ## 技术栈
 
-nodejs + express + mongodb + mongoose + es6/7
+nodejs + express + mongodb + mongoose + log4j + redis + nodeMailer + es6/7
 
 
 ## 项目运行
@@ -24,11 +24,157 @@ cd node-elm
 
 npm install 或 yarn(推荐)
 
-node mailServer/index.js
-npm run dev
+node mailServer/index.js    // 运行邮件服务器，当运行中出 bug 时会发邮件报警
+npm run dev                 // 运行 Node.js 项目
 
 访问: http://localhost:3000
 阿里云地址: http://elm_node.anitamul.club
+```
+## 目录结构
+```
+├── app.js
+├── config
+│   ├── default.js                            // 默认配置文件
+│   ├── development.js                        // 开发配置文件
+│   └── log4j.js                              // log4j 配置文件
+├── controller                                // 级别 warn 的日志输出
+│   ├── admin
+│   │   └── admin.js                          // 管理员 controller
+│   ├── member
+│   │   └── vipcart.js                        // 普通用户会员管理 controller
+│   ├── promotion
+│   │   └── hongbao.js                        // 红包 controller
+│   ├── shopping
+│   │   ├── category.js                       // 食品所属类别 controller
+│   │   ├── food.js                           // 食品 controller
+│   │   └── shop.js                           // 商店 controller
+│   ├── statis
+│   │   └── statis.js                         // 统计数据 —— API、用户、管理员、订单数量 controller
+│   ├── ugc
+│   │   └── rating.js                         // 商店评价信息 —— 商店评分、商店评论分类、每个分类下的评论 controller
+│   ├── v1
+│   │   ├── address.js                        // 用户收货地址 controller
+│   │   ├── captchas.js                       // 验证码 controller
+│   │   ├── carts.js                          // 用户购物车 controller
+│   │   ├── cities.js                         // 用户当前位置选择 —— 百度地图API定位、用户自选地址 controller
+│   │   ├── order.js                          // 用户订单 controller
+│   │   ├── remark.js                         // 用户订单备注信息 controller
+│   │   └── search.js                         // 搜索当前城市某关键字地址 controller
+│   ├── v2
+│   │   ├── entry.js                          // 食品所有分类 controller
+│   │   └── user.js                           // 普通用户 controller
+│   └── v3
+│       └── explain.js                        // 提示信息 controller
+├── COPYING
+├── ecosystem.config.js                       // pm2 配置文件
+├── elmConfig.json                            // 阿里云 Node.js 性能监控平台
+├── index.js
+├── InitData                                  // 初始化数据
+│   ├── activity.js                           
+│   ├── category.js
+│   ├── cities.js
+│   ├── delivery.js
+│   ├── entry.js
+│   ├── explain.js
+│   ├── hongbao.js
+│   ├── payments.js
+│   ├── rate.js
+│   └── remark.js
+├── logs                                      // 日志                        
+│   ├── all                                   // 级别 all - warn 的日志输出
+│   │   └── elm_all.log
+│   ├── error                                 // 级别 error 的日志输出
+│   │   ├── elm_error_2022-04-19.log.gz
+│   │   ├── elm_error_2022-04-20.log.gz
+│   │   └── elm_error.log
+│   ├── http                                  // http全链路日志输出
+│   │   ├── elm_http_2022-04-19.log.gz
+│   │   ├── elm_http_2022-04-20.log.gz
+│   │   ├── elm_http_2022-04-21.log.gz
+│   │   └── elm_http.log
+│   ├── pm2                                   // pm2日志输出
+│   │   ├── elm_node
+│   │   │   ├── app-pm_id-34.pid
+│   │   │   ├── ELMerr.log
+│   │   │   └── ELMout.log
+│   │   └── mail_node
+│   │       ├── app-pm_id-35.pid
+│   │       ├── ELMerr.log
+│   │       └── ELMout.log
+│   └── warn                                  // 级别 warn 的日志输出
+│       └── elm_warn.log
+├── mailServer                                // 邮件服务器
+│   ├── app.js
+│   └── index.js
+├── middlewares                               // 中间件
+│   ├── check.js                              // 用户身份验证
+│   ├── log4j.js                              // log4j 中间件
+├── models                                    // Model
+│   ├── admin
+│   │   └── admin.js                          // 管理员 Model
+│   ├── bos
+│   │   └── order.js                          // 用户订单 Model
+│   ├── bug
+│   │   └── bug.js                            // 用于 log4j 程序 bug 单流转
+│   ├── ids.js                                // Model id
+│   ├── promotion
+│   │   └── hongbao.js                        // 红包 Model
+│   ├── shopping
+│   │   ├── activity.js                       // 商店活动 Model
+│   │   ├── category.js                       // 食品分类 Model
+│   │   ├── delivery.js                       // 配送方式 Model
+│   │   ├── food.js                           // 食品 Model
+│   │   └── shop.js                           // 商店 Model
+│   ├── statis
+│   │   └── statis.js                         // 数据统计 Model
+│   ├── ugc
+│   │   └── rating.js                         // 商店评论 Model
+│   ├── v1
+│   │   ├── address.js                        // 用户地址 Model
+│   │   ├── cart.js                           // 用户购物车 Model
+│   │   ├── cities.js                         // 城市 Model
+│   │   ├── payments.js                       // 用户订单 Model
+│   │   └── remark.js                         // 用户订单备注信息 Model
+│   ├── v2
+│   │   ├── entry.js                          // 食品所有分类 Model
+│   │   ├── userInfo.js                       // 用户信息 Model
+│   │   └── user.js                           // 用户 Model
+│   └── v3
+│       └── explain.js                        // 提示信息 Model
+├── mongodb
+│   └── db.js                                 // 数据库
+├── package.json
+├── package-lock.json
+├── prototype
+│   ├── addressComponent.js                   // 地址基类
+│   └── baseComponent.js                      // 普通基类
+├── public                                    // 文件存储
+│   └── img
+│       └── 17e96e0dd2410.jpg
+├── README.md
+├── routes                                    // 路由
+│   ├── admin.js
+│   ├── bos.js
+│   ├── eus.js
+│   ├── index.js
+│   ├── member.js
+│   ├── payapi.js
+│   ├── promotion.js
+│   ├── shopping.js
+│   ├── statis.js
+│   ├── ugc.js
+│   ├── v1.js
+│   ├── v2.js
+│   ├── v3.js
+│   └── v4.js
+├── util                                      // 相关工具
+│   ├── ejs                                   // 模板引擎
+│   │   ├── pullBug.ejs                       // 获取 bug 
+│   │   └── sendBug.ejs                       // 发送 bug
+│   ├── log4jAppender.js                      // log4j Appender
+│   ├── log4jLayout.js                        // log4j Layout
+│   └── sendMail.js                           // 发送邮件
+└── yarn.lock
 ```
 
 ## API接口文档

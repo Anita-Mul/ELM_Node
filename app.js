@@ -14,7 +14,7 @@ import { reqMiddleware } from './middlewares/log4j.js';
 import Layout from './util/log4jLayout.js';
 import logConfig from './config/log4j.js';
 
-// import Statistic from './middlewares/statistic'
+
 process.setMaxListeners(0)
 
 const app = express();
@@ -37,7 +37,7 @@ app.all('*', (req, res, next) => {
 });
 
 
-// app.use(Statistic.apiRecord)
+
 const MongoStore = connectMongo(session);
 app.use(cookieParser());
 app.use(session({
