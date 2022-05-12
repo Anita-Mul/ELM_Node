@@ -17,7 +17,7 @@ nodejs + express + mongodb + mongoose + log4j + redis + nodeMailer + ejs + es6/7
 ```
 
 ```
-git clone https://github.com/bailicangdu/node-elm  
+git clone https://github.com/Anita-Mul/ELM_Node
 
 cd ELM_Node
 
