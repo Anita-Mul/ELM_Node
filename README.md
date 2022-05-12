@@ -9,7 +9,6 @@ nodejs + express + mongodb + mongoose + log4j + redis + nodeMailer + es6/7
 
 
 ## 项目运行
-
 ```
 项目运行之前，请确保系统已经安装以下应用
 1、node (6.0 及以上版本)
@@ -30,6 +29,35 @@ npm run dev                 // 运行 Node.js 项目
 访问: http://localhost:3000
 阿里云地址: http://elm_node.anitamul.club
 ```
+
+## 使用阿里云 Nodejs 性能监控平台
+ - [阿里云 Nodejs 性能监控平台地址](https://node.console.aliyun.com/?spm=5176.179584.J_5253785160.3.578220085PQS8g&accounttraceid=fbd61a5d0a9549999fe283c007a545bdfauy#!/owned)
+ - 更改 elmConfig.json 中
+  ```
+  {
+    "appid": "123456",   
+    "secret": "50a3908378749237f7ce52aa23afa067ac9749108a6",
+  }
+  ```
+
+## 使用 pm2 管理 node 进程
+```
+# Start all applications
+pm2 start ecosystem.config.js
+
+# Stop all
+pm2 stop ecosystem.config.js
+
+# Restart all
+pm2 restart ecosystem.config.js
+
+# Reload all
+pm2 reload ecosystem.config.js
+
+# Delete all
+pm2 delete ecosystem.config.js
+```
+
 ## 目录结构
 ```
 ├── app.js
